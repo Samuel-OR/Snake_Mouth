@@ -111,8 +111,9 @@ class Student(object):
 
 	__slots__ = ['_Email', '_Password', '_Name', '_Phone']
 	def __init__(self, Email, Password, Name, Phone):
+		print(Student.Matricula)
 		self._matricula = str(Student.Matricula)
-		Student.Matricula = str(Student.Matricula+1)
+		Student.Matricula = Student.Matricula+1
 		self._email = str(Email)
 		self._password = str(Password)
 		self._name = Name
@@ -164,8 +165,9 @@ class Teacher(object):
 
 	__slots__ = ['_Email', '_Password', '_Name']
 	def __init__(self,Email, Password, Name):
+		print(Teacher.Siape)
 		self._siape = str(Teacher.Siape)
-		Teacher.Siape = str(Teacher.Siape+1)
+		Teacher.Siape = Teacher.Siape+1
 		self._email = str(Email)
 		self._password = str(Password)
 		self._name = Name
