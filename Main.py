@@ -30,9 +30,9 @@ def menuPrincipal():
 			elif value == 3:
 				MenuTeacher(lista[1])
 		elif(op == 2):
-			sessao.registerTeacher()
-		elif(op == 3):
 			sessao.registerStudent()
+		elif(op == 3):
+			sessao.registerTeacher()
 		elif(op == 4):
 			sessao.show()
 		elif(op == 0):
