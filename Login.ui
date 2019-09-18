@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>270</y>
+      <y>250</y>
       <width>341</width>
       <height>80</height>
      </rect>
@@ -26,6 +26,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="pushButton">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="text">
         <string>Cadastrar</string>
        </property>
@@ -33,6 +36,18 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_2">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #3e329c;
+border-radius: 7px;
+padding: 4px;
+color: white;</string>
+       </property>
        <property name="text">
         <string>Login</string>
        </property>
@@ -44,7 +59,7 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>120</y>
+      <y>100</y>
       <width>341</width>
       <height>141</height>
      </rect>
@@ -92,7 +107,7 @@
      <x>0</x>
      <y>0</y>
      <width>640</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
