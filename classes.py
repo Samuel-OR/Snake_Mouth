@@ -60,7 +60,7 @@ class Login(object):
 		Email = input("Digite seu email: ")
 		Password = input("Digite sua senha: ")
 		Name = input("Digite nome completo: ")
-		Phone = input("Digite numero de telefone: ")
+		#Phone = input("Digite numero de telefone: ")
 		obj = Student(Email, Password, Name, Phone)
 		self._students[Email] = Password
 
