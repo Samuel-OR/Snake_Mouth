@@ -18,13 +18,13 @@
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>20</y>
+      <y>30</y>
       <width>531</width>
       <height>401</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -112,7 +112,7 @@
        <rect>
         <x>20</x>
         <y>290</y>
-        <width>165</width>
+        <width>141</width>
         <height>61</height>
        </rect>
       </property>
@@ -136,33 +136,25 @@
      <widget class="QWidget" name="verticalLayoutWidget_4">
       <property name="geometry">
        <rect>
-        <x>180</x>
+        <x>160</x>
         <y>290</y>
-        <width>101</width>
+        <width>71</width>
         <height>61</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
-        <widget class="QLabel" name="label_9">
-         <property name="text">
-          <string>&lt;quantidade&gt;</string>
-         </property>
-        </widget>
+        <widget class="QTextBrowser" name="textBrowser_2"/>
        </item>
        <item>
-        <widget class="QLabel" name="label_10">
-         <property name="text">
-          <string>&lt;quantidade&gt;</string>
-         </property>
-        </widget>
+        <widget class="QTextBrowser" name="textBrowser"/>
        </item>
       </layout>
      </widget>
      <widget class="QLabel" name="label_4">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>200</x>
         <y>20</y>
         <width>111</width>
         <height>17</height>
@@ -182,12 +174,12 @@
        <rect>
         <x>30</x>
         <y>50</y>
-        <width>101</width>
+        <width>71</width>
         <height>17</height>
        </rect>
       </property>
       <property name="text">
-       <string>Progressos</string>
+       <string>Progresso</string>
       </property>
      </widget>
      <widget class="QTableWidget" name="tableWidget">
@@ -208,11 +200,6 @@
       <attribute name="verticalHeaderHighlightSections">
        <bool>true</bool>
       </attribute>
-      <row>
-       <property name="text">
-        <string>1</string>
-       </property>
-      </row>
       <column>
        <property name="text">
         <string>Nome</string>
@@ -225,7 +212,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Classificação</string>
+        <string>Submissões Corretas</string>
        </property>
       </column>
      </widget>
@@ -281,8 +268,8 @@
      <widget class="QPushButton" name="pushButton_2">
       <property name="geometry">
        <rect>
-        <x>368</x>
-        <y>310</y>
+        <x>360</x>
+        <y>300</y>
         <width>121</width>
         <height>25</height>
        </rect>
@@ -295,7 +282,7 @@
       <property name="geometry">
        <rect>
         <x>180</x>
-        <y>160</y>
+        <y>170</y>
         <width>211</width>
         <height>25</height>
        </rect>
@@ -304,17 +291,27 @@
        <string>Adicionar outro componente</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_13">
+     <widget class="QTextBrowser" name="textBrowser_3">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>220</y>
-        <width>171</width>
+        <x>40</x>
+        <y>250</y>
+        <width>241</width>
         <height>71</height>
        </rect>
       </property>
+     </widget>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>220</y>
+        <width>109</width>
+        <height>37</height>
+       </rect>
+      </property>
       <property name="text">
-       <string>&lt;componentes add&gt;</string>
+       <string>Componentes</string>
       </property>
      </widget>
     </widget>
@@ -342,7 +339,7 @@
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>150</y>
+        <y>160</y>
         <width>161</width>
         <height>17</height>
        </rect>
@@ -355,7 +352,7 @@
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>39</y>
+        <y>29</y>
         <width>222</width>
         <height>20</height>
        </rect>
@@ -367,8 +364,8 @@
      <widget class="QCheckBox" name="checkBox">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>150</y>
+        <x>190</x>
+        <y>160</y>
         <width>86</width>
         <height>22</height>
        </rect>
@@ -380,8 +377,8 @@
      <widget class="QSpinBox" name="spinBox">
       <property name="geometry">
        <rect>
-        <x>350</x>
-        <y>110</y>
+        <x>340</x>
+        <y>130</y>
         <width>91</width>
         <height>27</height>
        </rect>
@@ -396,7 +393,10 @@
        <number>9999</number>
       </property>
       <property name="singleStep">
-       <number>1000</number>
+       <number>1</number>
+      </property>
+      <property name="value">
+       <number>500</number>
       </property>
      </widget>
      <widget class="QLabel" name="label_16">
@@ -416,7 +416,7 @@
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>60</y>
+        <y>50</y>
         <width>351</width>
         <height>29</height>
        </rect>
@@ -426,7 +426,7 @@
       <property name="geometry">
        <rect>
         <x>410</x>
-        <y>40</y>
+        <y>30</y>
         <width>101</width>
         <height>20</height>
        </rect>
@@ -452,7 +452,7 @@
       <property name="geometry">
        <rect>
         <x>420</x>
-        <y>60</y>
+        <y>50</y>
         <width>71</width>
         <height>31</height>
        </rect>
@@ -468,13 +468,52 @@
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>110</y>
+        <y>130</y>
         <width>301</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
        <string>Time limite para execução em millisegundos:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_7">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>90</y>
+        <width>291</width>
+        <height>29</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_20">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>92</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Arquivo</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_5">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>90</y>
+        <width>87</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Importar</string>
       </property>
      </widget>
     </widget>
@@ -486,7 +525,7 @@
      <x>0</x>
      <y>0</y>
      <width>640</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>
