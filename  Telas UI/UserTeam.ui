@@ -20,11 +20,11 @@
       <x>60</x>
       <y>40</y>
       <width>531</width>
-      <height>401</height>
+      <height>381</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -87,6 +87,25 @@
         <width>131</width>
         <height>21</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_7">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>320</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #e05858;
+border-radius: 7px;
+padding: 4px;
+color: white;</string>
+      </property>
+      <property name="text">
+       <string>Encerrar Sessão</string>
       </property>
      </widget>
     </widget>
@@ -241,7 +260,7 @@ color: white;</string>
      <x>0</x>
      <y>0</y>
      <width>646</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>
