@@ -15,7 +15,7 @@ class Ui_MainWindow(object):
 		MainWindow.setObjectName("MainWindow")
 		MainWindow.resize(641, 480)
 
-		#self.obEnviar = Enviar()
+		self.obEnviar = Enviar()
 
 
 		self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -81,6 +81,7 @@ class Ui_MainWindow(object):
 		self.retranslateUi(MainWindow)
 		QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+		self.funcionalidades()
 	def retranslateUi(self, MainWindow):
 		_translate = QtCore.QCoreApplication.translate
 		MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -101,10 +102,10 @@ class Ui_MainWindow(object):
 		email = self.lineEdit.text()
 		password = self.lineEdit_2.text()
 		name = self.lineEdit_3.text()
-		prof = Teacher(email, password, name)
+		#prof = Teacher(email, password, name)
 
 		dados = email+','+password+','+name
-		#self.obEnviar.enviarDados(dados)
+		self.obEnviar.enviarDados(dados)
 		print("Professor(a) {} cadastrado(a).".format(name))
 
 

@@ -18,15 +18,4 @@ class Teacher(object):
 		self._subjects[obj._idSub] = obj 	#{Id_sub: Objeto}
 		return True
 
-	def registerTeacher(self):
-
-		Email = input("Digite seu email: ")
-		Password = input("Digite sua senha: ")
-		Name = input("Digite nome completo: ")
-		obj = Teacher(Email, Password, Name)
-		self._teacher[Email] = Password
-		
-		BDteacher[obj._siape] = obj
-		print("Professor(a) {} cadastrado(a).".format(Name))
-		return True
 	#Editar Email e Senha
