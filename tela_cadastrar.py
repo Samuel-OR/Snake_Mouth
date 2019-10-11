@@ -10,12 +10,12 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from classeProfessor import Teacher
 from enviar import Enviar
 
-class Ui_MainWindow(object):
+class Ui_Tela_Cadastrar(object):
 	def setupUi(self, MainWindow):
 		MainWindow.setObjectName("MainWindow")
 		MainWindow.resize(641, 480)
 
-		self.obEnviar = Enviar()
+		#self.obEnviar = Enviar()
 
 
 		self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -113,7 +113,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Ui_Tela_Cadastrar()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

@@ -8,7 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_MainWindow(object):
+class Ui_Tela_Team(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(646, 480)
@@ -35,7 +35,7 @@ class Ui_MainWindow(object):
         self.textBrowser.setGeometry(QtCore.QRect(110, 220, 131, 21))
         self.textBrowser.setObjectName("textBrowser")
         self.pushButton_7 = QtWidgets.QPushButton(self.tab)
-        self.pushButton_7.setGeometry(QtCore.QRect(410, 320, 111, 21))
+        self.pushButton_7.setGeometry(QtCore.QRect(400, 310, 71, 31))
         self.pushButton_7.setStyleSheet("background-color: #e05858;\n"
 "border-radius: 7px;\n"
 "padding: 4px;\n"
@@ -106,7 +106,7 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.tab_3, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 646, 23))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 646, 22))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -123,7 +123,7 @@ class Ui_MainWindow(object):
         self.label.setText(_translate("MainWindow", "Componentes"))
         self.label_2.setText(_translate("MainWindow", "NO COOFEEE NO LIFE"))
         self.label_3.setText(_translate("MainWindow", "SCORE"))
-        self.pushButton_7.setText(_translate("MainWindow", "Encerrar Sessão"))
+        self.pushButton_7.setText(_translate("MainWindow", "Sair"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Perfil do Time"))
         self.label_6.setText(_translate("MainWindow", "<nome do arquivo>"))
         self.label_4.setText(_translate("MainWindow", "Questão:"))
@@ -146,7 +146,8 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Ui_Tela_Team()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+

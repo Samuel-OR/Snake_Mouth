@@ -8,7 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_MainWindow(object):
+class Ui_Tela_Professor(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(640, 480)
@@ -56,7 +56,7 @@ class Ui_MainWindow(object):
         self.label_5.setObjectName("label_5")
         self.verticalLayout.addWidget(self.label_5)
         self.pushButton = QtWidgets.QPushButton(self.tab)
-        self.pushButton.setGeometry(QtCore.QRect(400, 240, 89, 25))
+        self.pushButton.setGeometry(QtCore.QRect(400, 240, 81, 31))
         self.pushButton.setStyleSheet("background-color: #c4c245;\n"
 "border-radius: 7px;\n"
 "padding: 4px;\n"
@@ -83,6 +83,13 @@ class Ui_MainWindow(object):
         self.textBrowser_2 = QtWidgets.QTextBrowser(self.tab)
         self.textBrowser_2.setGeometry(QtCore.QRect(180, 280, 91, 31))
         self.textBrowser_2.setObjectName("textBrowser_2")
+        self.pushButton_7 = QtWidgets.QPushButton(self.tab)
+        self.pushButton_7.setGeometry(QtCore.QRect(430, 330, 61, 31))
+        self.pushButton_7.setStyleSheet("background-color: #e05858;\n"
+"border-radius: 7px;\n"
+"padding: 4px;\n"
+"color: white;")
+        self.pushButton_7.setObjectName("pushButton_7")
         self.tabWidget.addTab(self.tab, "")
         self.tab_3 = QtWidgets.QWidget()
         self.tab_3.setObjectName("tab_3")
@@ -305,6 +312,7 @@ class Ui_MainWindow(object):
         self.label_6.setText(_translate("MainWindow", "Exercicíos Cadastrados: "))
         self.label_7.setText(_translate("MainWindow", "Times Cadastrados: "))
         self.label_4.setText(_translate("MainWindow", "Dados Pessoais"))
+        self.pushButton_7.setText(_translate("MainWindow", "Sair"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Perfil"))
         self.label_8.setText(_translate("MainWindow", "Progresso"))
         item = self.tableWidget.horizontalHeaderItem(0)
@@ -346,7 +354,8 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Ui_Tela_Professor()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+

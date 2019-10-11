@@ -92,10 +92,10 @@
      <widget class="QPushButton" name="pushButton_7">
       <property name="geometry">
        <rect>
-        <x>410</x>
-        <y>320</y>
-        <width>111</width>
-        <height>21</height>
+        <x>400</x>
+        <y>310</y>
+        <width>71</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -105,7 +105,7 @@ padding: 4px;
 color: white;</string>
       </property>
       <property name="text">
-       <string>Encerrar Sessão</string>
+       <string>Sair</string>
       </property>
      </widget>
     </widget>
@@ -260,7 +260,7 @@ color: white;</string>
      <x>0</x>
      <y>0</y>
      <width>646</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
