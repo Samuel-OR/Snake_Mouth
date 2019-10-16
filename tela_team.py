@@ -7,6 +7,8 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
+import BancoDeDados as BD
 
 class Ui_Tela_Team(object):
     def setupUi(self, MainWindow):
@@ -48,7 +50,7 @@ class Ui_Tela_Team(object):
         self.graphicsView.setGeometry(QtCore.QRect(30, 190, 471, 101))
         self.graphicsView.setObjectName("graphicsView")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.tab_2)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(34, 79, 461, 31))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(30, 70, 461, 31))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -84,6 +86,13 @@ class Ui_Tela_Team(object):
         self.label_7 = QtWidgets.QLabel(self.tab_2)
         self.label_7.setGeometry(QtCore.QRect(30, 160, 161, 17))
         self.label_7.setObjectName("label_7")
+        self.pushButton_5 = QtWidgets.QPushButton(self.tab_2)
+        self.pushButton_5.setGeometry(QtCore.QRect(280, 120, 87, 29))
+        self.pushButton_5.setStyleSheet("background-color: #a8a894;\n"
+"border-radius: 7px;\n"
+"padding: 4px;\n"
+"color: white;")
+        self.pushButton_5.setObjectName("pushButton_5")
         self.tabWidget.addTab(self.tab_2, "")
         self.tab_3 = QtWidgets.QWidget()
         self.tab_3.setObjectName("tab_3")
@@ -104,9 +113,31 @@ class Ui_Tela_Team(object):
         self.tableWidget_2.verticalHeader().setCascadingSectionResizes(False)
         self.tableWidget_2.verticalHeader().setHighlightSections(True)
         self.tabWidget.addTab(self.tab_3, "")
+        self.tab_4 = QtWidgets.QWidget()
+        self.tab_4.setObjectName("tab_4")
+        self.label_8 = QtWidgets.QLabel(self.tab_4)
+        self.label_8.setGeometry(QtCore.QRect(240, 30, 71, 17))
+        self.label_8.setObjectName("label_8")
+        self.graphicsView_2 = QtWidgets.QGraphicsView(self.tab_4)
+        self.graphicsView_2.setGeometry(QtCore.QRect(30, 50, 461, 131))
+        self.graphicsView_2.setObjectName("graphicsView_2")
+        self.pushButton_2 = QtWidgets.QPushButton(self.tab_4)
+        self.pushButton_2.setGeometry(QtCore.QRect(386, 290, 101, 31))
+        self.pushButton_2.setStyleSheet("background-color: #4ebf6d;\n"
+"border-radius: 5px;\n"
+"padding: 4px;\n"
+"color: white;")
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.lineEdit_6 = QtWidgets.QLineEdit(self.tab_4)
+        self.lineEdit_6.setGeometry(QtCore.QRect(30, 230, 471, 29))
+        self.lineEdit_6.setObjectName("lineEdit_6")
+        self.label_9 = QtWidgets.QLabel(self.tab_4)
+        self.label_9.setGeometry(QtCore.QRect(220, 210, 101, 17))
+        self.label_9.setObjectName("label_9")
+        self.tabWidget.addTab(self.tab_4, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 646, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 646, 23))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -130,6 +161,7 @@ class Ui_Tela_Team(object):
         self.label_5.setText(_translate("MainWindow", "Arquivo:"))
         self.pushButton.setText(_translate("MainWindow", "Submeter"))
         self.label_7.setText(_translate("MainWindow", "Histórico de Submissão"))
+        self.pushButton_5.setText(_translate("MainWindow", "Importar"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Submissões"))
         item = self.tableWidget_2.verticalHeaderItem(0)
         item.setText(_translate("MainWindow", "1"))
@@ -140,6 +172,10 @@ class Ui_Tela_Team(object):
         item = self.tableWidget_2.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "Submissões Corretas"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Classificação Geral"))
+        self.label_8.setText(_translate("MainWindow", "Dúvidas"))
+        self.pushButton_2.setText(_translate("MainWindow", "Enviar"))
+        self.label_9.setText(_translate("MainWindow", "Questionamento"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("MainWindow", "Forúm"))
 
 
 if __name__ == "__main__":

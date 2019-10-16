@@ -5,10 +5,11 @@
 # Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-from classeProfessor import Teacher
+from PyQt5.QtWidgets import QMessageBox
+from BancoDeDados import Teacher
 from enviar import Enviar
+import BancoDeDados as BD
 
 class Ui_Tela_Cadastrar(object):
 	def setupUi(self, MainWindow):
@@ -16,7 +17,6 @@ class Ui_Tela_Cadastrar(object):
 		MainWindow.resize(641, 480)
 
 		#self.obEnviar = Enviar()
-
 
 		self.centralwidget = QtWidgets.QWidget(MainWindow)
 		self.centralwidget.setObjectName("centralwidget")
@@ -98,16 +98,16 @@ class Ui_Tela_Cadastrar(object):
 		self.pushButton_2.clicked.connect(self.cadastrar)
 
 	def cadastrar(self):
-		print("FOI")
+	
 		email = self.lineEdit.text()
 		password = self.lineEdit_2.text()
 		name = self.lineEdit_3.text()
-		#prof = Teacher(email, password, name)
-
-		dados = email+','+password+','+name
-		self.obEnviar.enviarDados(dados)
-		print("Professor(a) {} cadastrado(a).".format(name))
-
+		if(BD.registerTeacher(email, password, name)):
+			QMessageBox.about(None, "ATENÇÃO", "Cadastro Efetuado.") 
+			pass
+		else:
+			QMessageBox.about(None, "ATENÇÃO", "Email já cadastrado.") 
+			pass
 
 if __name__ == "__main__":
     import sys

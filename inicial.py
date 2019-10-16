@@ -12,6 +12,10 @@ import sys
 import os
 from PyQt5.QtCore import pyqtSlot
 
+
+import BancoDeDados as BD
+
+
 class Ui_Main(QtWidgets.QWidget):
     def setupUi(self, Main):
         Main.setObjectName('Main')
@@ -48,6 +52,8 @@ class Main(QMainWindow, Ui_Main):
         self.setupUi(self)
 
         self.tela_login.pushButton.clicked.connect(self.openTelaCadastrar)
+
+
         self.tela_login.pushButton_2.clicked.connect(self.entrar)
 
         self.tela_cadastrar.pushButton.clicked.connect(self.voltarLogin)
@@ -68,9 +74,19 @@ class Main(QMainWindow, Ui_Main):
         self.QtStack.setCurrentIndex(1)
 
     def entrar(self):
-        self.QtStack.setCurrentIndex(2) #tela de login do professor
-        #self.QtStack.setCurrentIndex(3) #tela de login do aluno
 
+        user = self.tela_login.lineEdit.text()
+        password = self.tela_login.lineEdit_2.text()
+        cad = BD.login(user, password)
+        if(cad[2] == 2):
+            BD.codTEACHE = user
+            self.QtStack.setCurrentIndex(2) #tela de login do professor
+        elif cad[2] == 1:
+            BD.codTeam = user
+            self.QtStack.setCurrentIndex(3) #tela de login do aluno
+        else:
+            QMessageBox.about(self, "ATENÇÃO", "Usúario ou Senha inválidos.") 
+            #self.show()
     def voltarLogin(self):
         self.QtStack.setCurrentIndex(0)
 

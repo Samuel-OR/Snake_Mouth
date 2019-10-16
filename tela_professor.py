@@ -6,7 +6,11 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QTableWidgetItem
+from PyQt5 import QtCore, QtGui, QtWidgets, Qt
+import BancoDeDados as BD
 
 class Ui_Tela_Professor(object):
     def setupUi(self, MainWindow):
@@ -120,6 +124,15 @@ class Ui_Tela_Professor(object):
 "padding: 4px;\n"
 "color: white;")
         self.pushButton_2.setObjectName("pushButton_2")
+
+        self.pushButton_10 = QtWidgets.QPushButton(self.tab_3)
+        #self.pushButton_10.setGeometry(QtCore.QRect(200, 280, 151, 31))
+        self.pushButton_10.setGeometry(QtCore.QRect(200, 320, 141, 31))
+        self.pushButton_10.setStyleSheet("background-color: #c4c245;\n"
+"border-radius: 7px;\n"
+"padding: 4px;\n"
+"color: white;")
+        self.pushButton_10.setObjectName("pushButton_10")
         self.label_11 = QtWidgets.QLabel(self.tab_2)
         self.label_11.setGeometry(QtCore.QRect(20, 66, 101, 37))
         self.label_11.setObjectName("label_11")
@@ -127,7 +140,7 @@ class Ui_Tela_Professor(object):
         self.lineEdit_2.setGeometry(QtCore.QRect(130, 70, 361, 29))
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.tab_2)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(20, 120, 471, 131))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(20, 120, 471, 138))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -169,17 +182,11 @@ class Ui_Tela_Professor(object):
         self.plainTextEdit.setGeometry(QtCore.QRect(40, 220, 450, 70))
         self.plainTextEdit.setMaximumSize(QtCore.QSize(450, 70))
         self.plainTextEdit.setObjectName("plainTextEdit")
-        self.label_14 = QtWidgets.QLabel(self.tab_4)
-        self.label_14.setGeometry(QtCore.QRect(40, 160, 161, 17))
-        self.label_14.setObjectName("label_14")
         self.label_15 = QtWidgets.QLabel(self.tab_4)
         self.label_15.setGeometry(QtCore.QRect(40, 29, 222, 20))
         self.label_15.setObjectName("label_15")
-        self.checkBox = QtWidgets.QCheckBox(self.tab_4)
-        self.checkBox.setGeometry(QtCore.QRect(210, 160, 86, 22))
-        self.checkBox.setObjectName("checkBox")
         self.spinBox = QtWidgets.QSpinBox(self.tab_4)
-        self.spinBox.setGeometry(QtCore.QRect(350, 130, 91, 27))
+        self.spinBox.setGeometry(QtCore.QRect(350, 170, 91, 27))
         self.spinBox.setAlignment(QtCore.Qt.AlignCenter)
         self.spinBox.setMinimum(500)
         self.spinBox.setMaximum(9999)
@@ -187,13 +194,13 @@ class Ui_Tela_Professor(object):
         self.spinBox.setProperty("value", 500)
         self.spinBox.setObjectName("spinBox")
         self.label_16 = QtWidgets.QLabel(self.tab_4)
-        self.label_16.setGeometry(QtCore.QRect(40, 190, 161, 17))
+        self.label_16.setGeometry(QtCore.QRect(40, 200, 161, 17))
         self.label_16.setObjectName("label_16")
         self.lineEdit_6 = QtWidgets.QLineEdit(self.tab_4)
         self.lineEdit_6.setGeometry(QtCore.QRect(40, 50, 351, 29))
         self.lineEdit_6.setObjectName("lineEdit_6")
         self.label_17 = QtWidgets.QLabel(self.tab_4)
-        self.label_17.setGeometry(QtCore.QRect(410, 30, 101, 20))
+        self.label_17.setGeometry(QtCore.QRect(410, 30, 81, 20))
         self.label_17.setObjectName("label_17")
         self.pushButton_4 = QtWidgets.QPushButton(self.tab_4)
         self.pushButton_4.setGeometry(QtCore.QRect(200, 320, 141, 31))
@@ -203,26 +210,41 @@ class Ui_Tela_Professor(object):
 "color: white;")
         self.pushButton_4.setObjectName("pushButton_4")
         self.label_18 = QtWidgets.QLabel(self.tab_4)
-        self.label_18.setGeometry(QtCore.QRect(420, 50, 71, 31))
+        self.label_18.setGeometry(QtCore.QRect(410, 50, 71, 31))
         self.label_18.setAlignment(QtCore.Qt.AlignCenter)
         self.label_18.setObjectName("label_18")
         self.label_19 = QtWidgets.QLabel(self.tab_4)
-        self.label_19.setGeometry(QtCore.QRect(40, 130, 301, 20))
+        self.label_19.setGeometry(QtCore.QRect(40, 170, 301, 20))
         self.label_19.setObjectName("label_19")
         self.lineEdit_7 = QtWidgets.QLineEdit(self.tab_4)
         self.lineEdit_7.setEnabled(False)
-        self.lineEdit_7.setGeometry(QtCore.QRect(100, 90, 291, 29))
+        self.lineEdit_7.setGeometry(QtCore.QRect(160, 90, 231, 29))
         self.lineEdit_7.setObjectName("lineEdit_7")
         self.label_20 = QtWidgets.QLabel(self.tab_4)
-        self.label_20.setGeometry(QtCore.QRect(40, 92, 61, 20))
+        self.label_20.setGeometry(QtCore.QRect(40, 92, 111, 20))
         self.label_20.setObjectName("label_20")
         self.pushButton_5 = QtWidgets.QPushButton(self.tab_4)
-        self.pushButton_5.setGeometry(QtCore.QRect(410, 90, 87, 29))
+        self.pushButton_5.setGeometry(QtCore.QRect(410, 90, 81, 21))
         self.pushButton_5.setStyleSheet("background-color: #a8a894;\n"
 "border-radius: 7px;\n"
 "padding: 4px;\n"
 "color: white;")
         self.pushButton_5.setObjectName("pushButton_5")
+        self.lineEdit_17 = QtWidgets.QLineEdit(self.tab_4)
+        self.lineEdit_17.setEnabled(False)
+        self.lineEdit_17.setGeometry(QtCore.QRect(160, 128, 231, 29))
+        self.lineEdit_17.setText("")
+        self.lineEdit_17.setObjectName("lineEdit_17")
+        self.pushButton_9 = QtWidgets.QPushButton(self.tab_4)
+        self.pushButton_9.setGeometry(QtCore.QRect(410, 130, 81, 21))
+        self.pushButton_9.setStyleSheet("background-color: #a8a894;\n"
+"border-radius: 7px;\n"
+"padding: 4px;\n"
+"color: white;")
+        self.pushButton_9.setObjectName("pushButton_9")
+        self.label_28 = QtWidgets.QLabel(self.tab_4)
+        self.label_28.setGeometry(QtCore.QRect(40, 130, 111, 20))
+        self.label_28.setObjectName("label_28")
         self.tabWidget.addTab(self.tab_4, "")
         self.tab_5 = QtWidgets.QWidget()
         self.tab_5.setObjectName("tab_5")
@@ -288,9 +310,31 @@ class Ui_Tela_Professor(object):
 "color: white;")
         self.pushButton_6.setObjectName("pushButton_6")
         self.tabWidget.addTab(self.tab_5, "")
+        self.tab_6 = QtWidgets.QWidget()
+        self.tab_6.setObjectName("tab_6")
+        self.label_9 = QtWidgets.QLabel(self.tab_6)
+        self.label_9.setGeometry(QtCore.QRect(220, 230, 101, 17))
+        self.label_9.setObjectName("label_9")
+        self.pushButton_8 = QtWidgets.QPushButton(self.tab_6)
+        self.pushButton_8.setGeometry(QtCore.QRect(386, 310, 101, 31))
+        self.pushButton_8.setStyleSheet("background-color: #4ebf6d;\n"
+"border-radius: 5px;\n"
+"padding: 4px;\n"
+"color: white;")
+        self.pushButton_8.setObjectName("pushButton_8")
+        self.label_10 = QtWidgets.QLabel(self.tab_6)
+        self.label_10.setGeometry(QtCore.QRect(240, 50, 71, 17))
+        self.label_10.setObjectName("label_10")
+        self.graphicsView_2 = QtWidgets.QGraphicsView(self.tab_6)
+        self.graphicsView_2.setGeometry(QtCore.QRect(30, 70, 471, 141))
+        self.graphicsView_2.setObjectName("graphicsView_2")
+        self.lineEdit_16 = QtWidgets.QLineEdit(self.tab_6)
+        self.lineEdit_16.setGeometry(QtCore.QRect(30, 250, 471, 29))
+        self.lineEdit_16.setObjectName("lineEdit_16")
+        self.tabWidget.addTab(self.tab_6, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 640, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 640, 23))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -300,6 +344,59 @@ class Ui_Tela_Professor(object):
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.funcionalidades()
+        self.inicializar()
+
+    def funcionalidades(self):
+        #self.pushButton.clicked.connect(self.atualizarPerfil)
+        self.pushButton.clicked.connect(self.inicializar)
+        self.pushButton_2.clicked.connect(self.cadastrarTime)
+        self.pushButton_10.clicked.connect(self.progresso)
+
+    def inicializar(self):
+        try:
+            code = BD.codTEACHE
+            
+            siape = BD.BDteacher[code].siape
+            email = BD.BDteacher[code]._email
+            nome = BD.BDteacher[code]._name
+            senha = BD.BDteacher[code]._password
+            
+            self.lineEdit_1.setText(siape)
+            self.lineEdit_3.setText(nome)
+            self.lineEdit_4.setText(email)
+            self.lineEdit_5.setText(senha)
+
+            self.textBrowser_2.setText(str(BD.BDteacher[code].exerCadastrados()))
+            self.textBrowser.setText(str(BD.BDteacher[code].teamCadastrados()))
+        except:
+            pass
+
+    def progresso(self):
+        self.tableWidget.clearContents()
+        rowPosition = self.tableWidget.rowCount()
+        for x in BD.BDteams.values():
+            self.tableWidget.insertRow(rowPosition)
+            self.tableWidget.setItem(rowPosition , 0, QTableWidgetItem(str(x._nameTeam)))
+            self.tableWidget.setItem(rowPosition , 1, QTableWidgetItem(str(x.pontuação)))
+            self.tableWidget.setItem(rowPosition , 2, QTableWidgetItem(str(x._corretas)))
+
+    def cadastrarTime(self):
+
+        code = BD.codTEACHE
+        nameTeam = self.lineEdit_2.text()
+        C1 = self.lineEdit_9.text()
+        C2 = self.lineEdit.text()
+        C3 = self.lineEdit_10.text()
+        C4 = self.lineEdit_8.text()
+        if(BD.BDteacher[code].registerTeam(nameTeam, C1, C2, C3, C4)):
+            QMessageBox.about(None, "CADASTRO", "Cadastro Efetuado.") 
+            pass
+        else:
+            QMessageBox.about(None, "CADASTRO", "Email já cadastrado.") 
+            pass
+
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -323,22 +420,27 @@ class Ui_Tela_Professor(object):
         item.setText(_translate("MainWindow", "Submissões Corretas"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Progresso dos Times"))
         self.pushButton_2.setText(_translate("MainWindow", "Cadastrar Time"))
+        self.pushButton_10.setText(_translate("MainWindow", "Atualizar"))
+
         self.label_11.setText(_translate("MainWindow", "Nome do Time"))
         self.label_12.setText(_translate("MainWindow", "Componente 1"))
         self.label_21.setText(_translate("MainWindow", "Componente 2"))
         self.label_22.setText(_translate("MainWindow", "Componente 3"))
         self.label_23.setText(_translate("MainWindow", "Componente 4"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Cadastrar Time"))
-        self.label_14.setText(_translate("MainWindow", "Visibilidade da questão:"))
         self.label_15.setText(_translate("MainWindow", "Nome da questão"))
-        self.checkBox.setText(_translate("MainWindow", "Visible"))
         self.label_16.setText(_translate("MainWindow", "Descrição"))
         self.label_17.setText(_translate("MainWindow", "ID da questão"))
         self.pushButton_4.setText(_translate("MainWindow", "Cadastrar Questão"))
-        self.label_18.setText(_translate("MainWindow", "ID"))
+        self.label_18.setText(_translate("MainWindow", "1"))
         self.label_19.setText(_translate("MainWindow", "Time limite para execução em millisegundos:"))
-        self.label_20.setText(_translate("MainWindow", "Arquivo"))
+        self.label_20.setText(_translate("MainWindow", "Arquivo de Entrada:"))
         self.pushButton_5.setText(_translate("MainWindow", "Importar"))
+
+        self.pushButton_5.clicked.connect(self.open_dialog_box)
+
+        self.pushButton_9.setText(_translate("MainWindow", "Importar"))
+        self.label_28.setText(_translate("MainWindow", "Arquivo de Saída:"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("MainWindow", "Cadastrar Questão"))
         self.label_13.setText(_translate("MainWindow", "Digite o nome da equipe"))
         self.pushButton_3.setText(_translate("MainWindow", "Pesquisar"))
@@ -348,7 +450,29 @@ class Ui_Tela_Professor(object):
         self.label_27.setText(_translate("MainWindow", "Componente 4"))
         self.pushButton_6.setText(_translate("MainWindow", "Alterar"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), _translate("MainWindow", "Editar Time"))
+        self.label_9.setText(_translate("MainWindow", "Questionamento"))
+        
+        self.pushButton_9.clicked.connect(self.open_dialog_box_2 )
 
+        self.pushButton_8.setText(_translate("MainWindow", "Enviar"))
+        self.label_10.setText(_translate("MainWindow", "Dúvidas"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_6), _translate("MainWindow", "Forúm"))
+
+        
+
+    def open_dialog_box(self):
+        print("Botão pressionado")
+        filename = QFileDialog.getOpenFileName()
+        path = filename[0]
+        self.lineEdit_7.setText(path)
+        print(path)
+
+    def open_dialog_box_2(self):
+        print("Botão pressionado")
+        filename = QFileDialog.getOpenFileName()
+        path = filename[0]
+        self.lineEdit_17.setText(path)
+        print(path)
 
 if __name__ == "__main__":
     import sys
