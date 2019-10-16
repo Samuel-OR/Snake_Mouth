@@ -350,8 +350,12 @@ class Ui_Tela_Professor(object):
     def funcionalidades(self):
         #self.pushButton.clicked.connect(self.atualizarPerfil)
         self.pushButton.clicked.connect(self.inicializar)
-        self.pushButton_2.clicked.connect(self.cadastrarTime)
         self.pushButton_10.clicked.connect(self.progresso)
+        self.pushButton_2.clicked.connect(self.cadastrarTime)
+
+
+
+        #self.pushButton_2.clicked.connect(self.cadastrarQuestão)
 
     def inicializar(self):
         try:

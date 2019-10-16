@@ -75,9 +75,25 @@ class Main(QMainWindow, Ui_Main):
 
     def entrar(self):
 
+        import socket
+        ip = 'localhost'
+        port = 7000
+        addr = ((ip,port)) #define a tupla de endereco
+        client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #AF_INET parametro para informar a familia do protocolo, SOCK_STREAM indica que eh TCP/IP
+        client_socket.connect(addr) #realiza a conexao
+        
+
         user = self.tela_login.lineEdit.text()
         password = self.tela_login.lineEdit_2.text()
-        cad = BD.login(user, password)
+        #cad = BD.login(user, password)
+        mensagem = str(user)+str(','+password)
+
+        #mensagem = input('digite uma mensagem para enviar ao servidor: ')
+        client_socket.send(mensagem.encode()) #envia mensagem
+
+        cad = client_socket.recv(1024).decode()
+        print('SHOW',cad)
+
         if(cad[2] == 2):
             BD.codTEACHE = user
             self.QtStack.setCurrentIndex(2) #tela de login do professor
@@ -85,8 +101,16 @@ class Main(QMainWindow, Ui_Main):
             BD.codTeam = user
             self.QtStack.setCurrentIndex(3) #tela de login do aluno
         else:
-            QMessageBox.about(self, "ATENÇÃO", "Usúario ou Senha inválidos.") 
+            QMessageBox.about(None, "ATENÇÃO", "Usúario ou Senha inválidos.") 
             #self.show()
+
+        print ('mensagem enviada')
+       
+        client_socket.close() #fecha conexao
+
+
+
+        
     def voltarLogin(self):
         self.QtStack.setCurrentIndex(0)
 

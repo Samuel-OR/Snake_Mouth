@@ -72,7 +72,12 @@ def registerTeacher(email, password, name ):
 	return True
 
 def login(user, password):
-
+	user = str(user)
+	password = str(password)
+	print("-------------------")
+	print(BDteams)
+	print(BDteacher)
+	print("-------------------")
 	if( user in BDteams.keys()):
 		if( BDteams[user]._password == password):
 			print("Login Team Efetuado.")
