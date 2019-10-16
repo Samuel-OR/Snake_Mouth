@@ -20,12 +20,16 @@ class ClientThread(threading.Thread):
         print("REceiver: ", msg)
         
         lista = msg.split(',')
-        
+
         user= lista[0]
         password = lista[1]
+        name = lista[1]
 
         cad = BD.login(user, password)
         cad = str(cad)
+
+        BD.registerTeacher(email, password, name)
+
         print("Retorno:", cad)
         print ("from client", msg)
         self.csocket.send(cad.encode())
