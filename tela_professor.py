@@ -352,10 +352,9 @@ class Ui_Tela_Professor(object):
         self.pushButton.clicked.connect(self.inicializar)
         self.pushButton_10.clicked.connect(self.progresso)
         self.pushButton_2.clicked.connect(self.cadastrarTime)
-
-
-
-        #self.pushButton_2.clicked.connect(self.cadastrarQuestão)
+        self.pushButton_4.clicked.connect(self.cadastrarQuestao)
+        self.pushButton_3.clicked.connect(self.pesquisar)
+        self.pushButton_6.clicked.connect(self.atualizar_team)
 
     def inicializar(self):
         try:
@@ -400,7 +399,55 @@ class Ui_Tela_Professor(object):
             QMessageBox.about(None, "CADASTRO", "Email já cadastrado.") 
             pass
 
+    def cadastrarQuestao(self):
 
+        code = BD.codTEACHE
+        nome = self.lineEdit_6.text()
+        entrada = self.lineEdit_7.text()
+        saida = self.lineEdit_17.text()
+        describe = self.plainTextEdit.toPlainText()
+        time = 0
+
+        BD.BDteacher[code].registerQuestion(self, name, entrada, saida, describe, time)
+        QMessageBox.about(None, "CADASTRO", "Cadastro Efetuado.")         
+
+    def pesquisar(self):
+        code = BD.codTEACHE
+        nameTeam = self.lineEdit_11.text()
+        try:
+            listaID = BD.BDteacher[code].teamUSERS
+            for x in listaID:
+                if(BD.BDteams[x]._nameTeam == nameTeam):
+                    self.lineEdit_12.setText(BD.BDteams[x]._components[0])
+                    self.lineEdit_13.setText(BD.BDteams[x]._components[1])
+                    self.lineEdit_14.setText(BD.BDteams[x]._components[2])
+                    self.lineEdit_15.setText(BD.BDteams[x]._components[3])
+                    break;
+        except:
+            pass
+
+    def atualizar_team(self):
+        code = BD.codTEACHE
+        nameTeam = self.lineEdit_11.text()
+        C1 = self.lineEdit_12.text()
+        C2 = self.lineEdit_13.text()
+        C3 = self.lineEdit_14.text()
+        C4 = self.lineEdit_15.text()
+
+
+        try:
+            listaID = BD.BDteacher[code].teamUSERS
+            for x in listaID:
+                if(BD.BDteams[x]._nameTeam == nameTeam):
+                    BD.BDteams[x]._components[0] = C1
+                    BD.BDteams[x]._components[1] = C2
+                    BD.BDteams[x]._components[2] = C3
+                    BD.BDteams[x]._components[3] = C4
+                    break;
+        except:
+            pass
+
+        QMessageBox.about(None, "ATUALIZAR", "Time Atualizado.")         
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -477,7 +524,7 @@ class Ui_Tela_Professor(object):
         path = filename[0]
         self.lineEdit_17.setText(path)
         print(path)
-
+    
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
