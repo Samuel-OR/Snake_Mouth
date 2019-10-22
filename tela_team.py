@@ -7,6 +7,8 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtWidgets import QTableWidgetItem
 from PyQt5.QtWidgets import QMessageBox
 import BancoDeDados as BD
 
@@ -162,6 +164,11 @@ class Ui_Tela_Team(object):
         self.pushButton.setText(_translate("MainWindow", "Submeter"))
         self.label_7.setText(_translate("MainWindow", "Histórico de Submissão"))
         self.pushButton_5.setText(_translate("MainWindow", "Importar"))
+        
+
+        self.pushButton_5.clicked.connect(self.open_dialog_box)
+
+
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Submissões"))
         item = self.tableWidget_2.verticalHeaderItem(0)
         item.setText(_translate("MainWindow", "1"))
@@ -176,6 +183,14 @@ class Ui_Tela_Team(object):
         self.pushButton_2.setText(_translate("MainWindow", "Enviar"))
         self.label_9.setText(_translate("MainWindow", "Questionamento"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("MainWindow", "Forúm"))
+    
+
+    def open_dialog_box(self):
+        print("Botão pressionado")
+        filename = QFileDialog.getOpenFileName()
+        path = filename[0]
+        self.label_6.setText(path)
+        print(path)
 
 
 if __name__ == "__main__":
