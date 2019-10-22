@@ -35,6 +35,7 @@ class Teacher(object):
 
 		obj = Team(nameTeam, C1, C2, C3, C4, self.siape)
 		BDteams[obj._user] = obj
+		self.teamUSERS.append(obj._user)
 
 		print("Time cadastrado")
 		return True
@@ -107,7 +108,7 @@ class Team(object):
 	def __init__(self, nameTeam, C1, C2, C3, C4, siape):
 		self.idProf = siape
 		self._user = str(Team.ID_team)
-		Team.ID_team = str(Team.ID_team+(randint(500,999)))
+		Team.ID_team = Team.ID_team+(randint(500,999))
 		self._password = str(randint(10000, 99999)+randint(10000, 99999))
 		self._components = [C1, C2, C3, C4]		#Lista de Students
 		self._nameTeam = nameTeam
