@@ -74,7 +74,7 @@ class Main(QMainWindow, Ui_Main):
         self.QtStack.setCurrentIndex(1)
 
     def entrar(self):
-
+        '''
         import socket
         ip = 'localhost'
         port = 7000
@@ -107,8 +107,24 @@ class Main(QMainWindow, Ui_Main):
         print ('mensagem enviada')
        
         client_socket.close() #fecha conexao
+        '''
+        #Sem Threads
+        user = self.tela_login.lineEdit.text()
+        password = self.tela_login.lineEdit_2.text()
+        cad = BD.login(user, password)
+        if(cad[2] == 2):
+            BD.codTEACHE = user
+            self.QtStack.setCurrentIndex(2) #tela de login do professor
+            #self.QtStack.setCurrentIndex(3) #tela de login do aluno
+        elif cad[2] == 1:
+            BD.codTeam = user
+            self.QtStack.setCurrentIndex(3) #tela de login do aluno
+        else:
+            QMessageBox.about(None, "ATENÇÃO", "Usúario ou Senha inválidos.") 
+            #self.show()
 
-
+        print ('mensagem enviada')
+       
 
         
     def voltarLogin(self):
