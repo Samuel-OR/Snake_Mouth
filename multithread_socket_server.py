@@ -27,7 +27,7 @@ class ClientThread(threading.Thread):
 
         cad = BD.login(user, password)
         cad = str(cad)
-
+        email = 'Servidor/Line30'
         BD.registerTeacher(email, password, name)
 
         print("Retorno:", cad)
