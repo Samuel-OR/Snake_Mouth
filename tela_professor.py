@@ -370,8 +370,8 @@ class Ui_Tela_Professor(object):
             self.lineEdit_4.setText(email)
             self.lineEdit_5.setText(senha)
 
-            self.textBrowser_2.setText(str(BD.BDteacher[code].exerCadastrados()))
-            self.textBrowser.setText(str(BD.BDteacher[code].teamCadastrados()))
+            #self.textBrowser_2.setText(str(BD.BDteacher[code].exerCadastrados()))
+            #self.textBrowser.setText(str(BD.BDteacher[code].teamCadastrados()))
         except:
             pass
 
@@ -394,6 +394,7 @@ class Ui_Tela_Professor(object):
         C4 = self.lineEdit_8.text()
         if(BD.BDteacher[code].registerTeam(nameTeam, C1, C2, C3, C4)):
             QMessageBox.about(None, "CADASTRO", "Cadastro Efetuado.") 
+            self.textBrowser.setText(str(BD.BDteacher[code].teamCadastrados()))
             pass
         else:
             QMessageBox.about(None, "CADASTRO", "Email já cadastrado.") 
@@ -410,6 +411,7 @@ class Ui_Tela_Professor(object):
 
         BD.BDteacher[code].registerQuestion(self, name, entrada, saida, describe, time)
         QMessageBox.about(None, "CADASTRO", "Cadastro Efetuado.")         
+        self.textBrowser_2.setText(str(BD.BDteacher[code].exerCadastrados()))
 
     def pesquisar(self):
         code = BD.codTEACHE
