@@ -24,22 +24,12 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
       <string>Perfil do Time</string>
      </attribute>
-     <widget class="QListView" name="listView">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>90</y>
-        <width>421</width>
-        <height>81</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
@@ -70,7 +60,7 @@
       <property name="geometry">
        <rect>
         <x>60</x>
-        <y>220</y>
+        <y>270</y>
         <width>71</width>
         <height>21</height>
        </rect>
@@ -83,7 +73,7 @@
       <property name="geometry">
        <rect>
         <x>110</x>
-        <y>220</y>
+        <y>270</y>
         <width>131</width>
         <height>21</height>
        </rect>
@@ -106,6 +96,46 @@ color: white;</string>
       </property>
       <property name="text">
        <string>Sair</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_5">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>210</y>
+        <width>409</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_1">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>96</y>
+        <width>409</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_3">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>130</y>
+        <width>409</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_4">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>170</y>
+        <width>409</width>
+        <height>25</height>
+       </rect>
       </property>
      </widget>
     </widget>
@@ -271,76 +301,6 @@ color: white;</string>
       </column>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_4">
-     <attribute name="title">
-      <string>Forúm</string>
-     </attribute>
-     <widget class="QLabel" name="label_8">
-      <property name="geometry">
-       <rect>
-        <x>240</x>
-        <y>30</y>
-        <width>71</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Dúvidas</string>
-      </property>
-     </widget>
-     <widget class="QGraphicsView" name="graphicsView_2">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>50</y>
-        <width>461</width>
-        <height>131</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="geometry">
-       <rect>
-        <x>386</x>
-        <y>290</y>
-        <width>101</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: #4ebf6d;
-border-radius: 5px;
-padding: 4px;
-color: white;</string>
-      </property>
-      <property name="text">
-       <string>Enviar</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_6">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>230</y>
-        <width>471</width>
-        <height>29</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_9">
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>210</y>
-        <width>101</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Questionamento</string>
-      </property>
-     </widget>
-    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -349,7 +309,7 @@ color: white;</string>
      <x>0</x>
      <y>0</y>
      <width>646</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
