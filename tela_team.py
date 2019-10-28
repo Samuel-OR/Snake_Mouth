@@ -6,10 +6,11 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+
 from PyQt5.QtWidgets import QFileDialog
-from PyQt5.QtWidgets import QTableWidgetItem
 from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QTableWidgetItem
+from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 import BancoDeDados as BD
 
 class Ui_Tela_Team(object):
@@ -23,9 +24,6 @@ class Ui_Tela_Team(object):
         self.tabWidget.setObjectName("tabWidget")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
-        self.listView = QtWidgets.QListView(self.tab)
-        self.listView.setGeometry(QtCore.QRect(50, 90, 421, 81))
-        self.listView.setObjectName("listView")
         self.label = QtWidgets.QLabel(self.tab)
         self.label.setGeometry(QtCore.QRect(50, 70, 91, 21))
         self.label.setObjectName("label")
@@ -33,10 +31,10 @@ class Ui_Tela_Team(object):
         self.label_2.setGeometry(QtCore.QRect(190, 40, 191, 21))
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(self.tab)
-        self.label_3.setGeometry(QtCore.QRect(60, 220, 71, 21))
+        self.label_3.setGeometry(QtCore.QRect(60, 270, 71, 21))
         self.label_3.setObjectName("label_3")
         self.textBrowser = QtWidgets.QTextBrowser(self.tab)
-        self.textBrowser.setGeometry(QtCore.QRect(110, 220, 131, 21))
+        self.textBrowser.setGeometry(QtCore.QRect(110, 270, 131, 21))
         self.textBrowser.setObjectName("textBrowser")
         self.pushButton_7 = QtWidgets.QPushButton(self.tab)
         self.pushButton_7.setGeometry(QtCore.QRect(400, 310, 71, 31))
@@ -45,6 +43,18 @@ class Ui_Tela_Team(object):
 "padding: 4px;\n"
 "color: white;")
         self.pushButton_7.setObjectName("pushButton_7")
+        self.lineEdit_5 = QtWidgets.QLineEdit(self.tab)
+        self.lineEdit_5.setGeometry(QtCore.QRect(50, 210, 409, 25))
+        self.lineEdit_5.setObjectName("lineEdit_5")
+        self.lineEdit_1 = QtWidgets.QLineEdit(self.tab)
+        self.lineEdit_1.setGeometry(QtCore.QRect(50, 96, 409, 25))
+        self.lineEdit_1.setObjectName("lineEdit_1")
+        self.lineEdit_3 = QtWidgets.QLineEdit(self.tab)
+        self.lineEdit_3.setGeometry(QtCore.QRect(50, 130, 409, 25))
+        self.lineEdit_3.setObjectName("lineEdit_3")
+        self.lineEdit_4 = QtWidgets.QLineEdit(self.tab)
+        self.lineEdit_4.setGeometry(QtCore.QRect(50, 170, 409, 25))
+        self.lineEdit_4.setObjectName("lineEdit_4")
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
@@ -115,31 +125,9 @@ class Ui_Tela_Team(object):
         self.tableWidget_2.verticalHeader().setCascadingSectionResizes(False)
         self.tableWidget_2.verticalHeader().setHighlightSections(True)
         self.tabWidget.addTab(self.tab_3, "")
-        self.tab_4 = QtWidgets.QWidget()
-        self.tab_4.setObjectName("tab_4")
-        self.label_8 = QtWidgets.QLabel(self.tab_4)
-        self.label_8.setGeometry(QtCore.QRect(240, 30, 71, 17))
-        self.label_8.setObjectName("label_8")
-        self.graphicsView_2 = QtWidgets.QGraphicsView(self.tab_4)
-        self.graphicsView_2.setGeometry(QtCore.QRect(30, 50, 461, 131))
-        self.graphicsView_2.setObjectName("graphicsView_2")
-        self.pushButton_2 = QtWidgets.QPushButton(self.tab_4)
-        self.pushButton_2.setGeometry(QtCore.QRect(386, 290, 101, 31))
-        self.pushButton_2.setStyleSheet("background-color: #4ebf6d;\n"
-"border-radius: 5px;\n"
-"padding: 4px;\n"
-"color: white;")
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.lineEdit_6 = QtWidgets.QLineEdit(self.tab_4)
-        self.lineEdit_6.setGeometry(QtCore.QRect(30, 230, 471, 29))
-        self.lineEdit_6.setObjectName("lineEdit_6")
-        self.label_9 = QtWidgets.QLabel(self.tab_4)
-        self.label_9.setGeometry(QtCore.QRect(220, 210, 101, 17))
-        self.label_9.setObjectName("label_9")
-        self.tabWidget.addTab(self.tab_4, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 646, 23))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 646, 22))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -147,7 +135,7 @@ class Ui_Tela_Team(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -164,11 +152,6 @@ class Ui_Tela_Team(object):
         self.pushButton.setText(_translate("MainWindow", "Submeter"))
         self.label_7.setText(_translate("MainWindow", "Histórico de Submissão"))
         self.pushButton_5.setText(_translate("MainWindow", "Importar"))
-        
-
-        self.pushButton_5.clicked.connect(self.open_dialog_box)
-
-
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Submissões"))
         item = self.tableWidget_2.verticalHeaderItem(0)
         item.setText(_translate("MainWindow", "1"))
@@ -179,18 +162,6 @@ class Ui_Tela_Team(object):
         item = self.tableWidget_2.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "Submissões Corretas"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Classificação Geral"))
-        self.label_8.setText(_translate("MainWindow", "Dúvidas"))
-        self.pushButton_2.setText(_translate("MainWindow", "Enviar"))
-        self.label_9.setText(_translate("MainWindow", "Questionamento"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("MainWindow", "Forúm"))
-    
-
-    def open_dialog_box(self):
-        print("Botão pressionado")
-        filename = QFileDialog.getOpenFileName()
-        path = filename[0]
-        self.label_6.setText(path)
-        print(path)
 
 
 if __name__ == "__main__":

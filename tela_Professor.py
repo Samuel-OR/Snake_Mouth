@@ -12,6 +12,7 @@ from PyQt5.QtWidgets import QTableWidgetItem
 from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 import BancoDeDados as BD
 
+
 class Ui_Tela_Professor(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -123,16 +124,16 @@ class Ui_Tela_Professor(object):
 "border-radius: 7px;\n"
 "padding: 4px;\n"
 "color: white;")
-        self.pushButton_2.setObjectName("pushButton_2")
 
         self.pushButton_10 = QtWidgets.QPushButton(self.tab_3)
-        #self.pushButton_10.setGeometry(QtCore.QRect(200, 280, 151, 31))
+                #self.pushButton_10.setGeometry(QtCore.QRect(200, 280, 151, 31))
         self.pushButton_10.setGeometry(QtCore.QRect(200, 320, 141, 31))
         self.pushButton_10.setStyleSheet("background-color: #c4c245;\n"
 "border-radius: 7px;\n"
 "padding: 4px;\n"
 "color: white;")
         self.pushButton_10.setObjectName("pushButton_10")
+        self.pushButton_2.setObjectName("pushButton_2")
         self.label_11 = QtWidgets.QLabel(self.tab_2)
         self.label_11.setGeometry(QtCore.QRect(20, 66, 101, 37))
         self.label_11.setObjectName("label_11")
@@ -310,31 +311,9 @@ class Ui_Tela_Professor(object):
 "color: white;")
         self.pushButton_6.setObjectName("pushButton_6")
         self.tabWidget.addTab(self.tab_5, "")
-        self.tab_6 = QtWidgets.QWidget()
-        self.tab_6.setObjectName("tab_6")
-        self.label_9 = QtWidgets.QLabel(self.tab_6)
-        self.label_9.setGeometry(QtCore.QRect(220, 230, 101, 17))
-        self.label_9.setObjectName("label_9")
-        self.pushButton_8 = QtWidgets.QPushButton(self.tab_6)
-        self.pushButton_8.setGeometry(QtCore.QRect(386, 310, 101, 31))
-        self.pushButton_8.setStyleSheet("background-color: #4ebf6d;\n"
-"border-radius: 5px;\n"
-"padding: 4px;\n"
-"color: white;")
-        self.pushButton_8.setObjectName("pushButton_8")
-        self.label_10 = QtWidgets.QLabel(self.tab_6)
-        self.label_10.setGeometry(QtCore.QRect(240, 50, 71, 17))
-        self.label_10.setObjectName("label_10")
-        self.graphicsView_2 = QtWidgets.QGraphicsView(self.tab_6)
-        self.graphicsView_2.setGeometry(QtCore.QRect(30, 70, 471, 141))
-        self.graphicsView_2.setObjectName("graphicsView_2")
-        self.lineEdit_16 = QtWidgets.QLineEdit(self.tab_6)
-        self.lineEdit_16.setGeometry(QtCore.QRect(30, 250, 471, 29))
-        self.lineEdit_16.setObjectName("lineEdit_16")
-        self.tabWidget.addTab(self.tab_6, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 640, 23))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 640, 22))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -344,8 +323,10 @@ class Ui_Tela_Professor(object):
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
         self.funcionalidades()
         self.inicializar()
+
 
     def funcionalidades(self):
         #self.pushButton.clicked.connect(self.atualizarPerfil)
@@ -451,6 +432,7 @@ class Ui_Tela_Professor(object):
 
         QMessageBox.about(None, "ATUALIZAR", "Time Atualizado.")         
 
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -473,8 +455,6 @@ class Ui_Tela_Professor(object):
         item.setText(_translate("MainWindow", "Submissões Corretas"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Progresso dos Times"))
         self.pushButton_2.setText(_translate("MainWindow", "Cadastrar Time"))
-        self.pushButton_10.setText(_translate("MainWindow", "Atualizar"))
-
         self.label_11.setText(_translate("MainWindow", "Nome do Time"))
         self.label_12.setText(_translate("MainWindow", "Componente 1"))
         self.label_21.setText(_translate("MainWindow", "Componente 2"))
@@ -489,9 +469,6 @@ class Ui_Tela_Professor(object):
         self.label_19.setText(_translate("MainWindow", "Time limite para execução em millisegundos:"))
         self.label_20.setText(_translate("MainWindow", "Arquivo de Entrada:"))
         self.pushButton_5.setText(_translate("MainWindow", "Importar"))
-
-        self.pushButton_5.clicked.connect(self.open_dialog_box)
-
         self.pushButton_9.setText(_translate("MainWindow", "Importar"))
         self.label_28.setText(_translate("MainWindow", "Arquivo de Saída:"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("MainWindow", "Cadastrar Questão"))
@@ -503,22 +480,15 @@ class Ui_Tela_Professor(object):
         self.label_27.setText(_translate("MainWindow", "Componente 4"))
         self.pushButton_6.setText(_translate("MainWindow", "Alterar"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), _translate("MainWindow", "Editar Time"))
-        self.label_9.setText(_translate("MainWindow", "Questionamento"))
-        
-        self.pushButton_9.clicked.connect(self.open_dialog_box_2 )
 
-        self.pushButton_8.setText(_translate("MainWindow", "Enviar"))
-        self.label_10.setText(_translate("MainWindow", "Dúvidas"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_6), _translate("MainWindow", "Forúm"))
 
-        
 
     def open_dialog_box(self):
-        print("Botão pressionado")
-        filename = QFileDialog.getOpenFileName()
-        path = filename[0]
-        self.lineEdit_7.setText(path)
-        print(path)
+            print("Botão pressionado")
+            filename = QFileDialog.getOpenFileName()
+            path = filename[0]
+            self.lineEdit_7.setText(path)
+            print(path)
 
     def open_dialog_box_2(self):
         print("Botão pressionado")
@@ -526,7 +496,7 @@ class Ui_Tela_Professor(object):
         path = filename[0]
         self.lineEdit_17.setText(path)
         print(path)
-    
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

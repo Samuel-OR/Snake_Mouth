@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QMainWindow, QMessageBox, QApplication, QTableWidget
 
 from tela_login import Ui_Tela_Login 
 from tela_cadastrar import Ui_Tela_Cadastrar
-from tela_professor import Ui_Tela_Professor
+from tela_Professor import Ui_Tela_Professor
 from tela_team import Ui_Tela_Team
 
 from PyQt5.QtGui import QPixmap
@@ -34,8 +34,8 @@ class Ui_Main(QtWidgets.QWidget):
         self.tela_cadastrar = Ui_Tela_Cadastrar()
         self.tela_cadastrar.setupUi(self.stack1)
 
-        self.tela_professor = Ui_Tela_Professor()
-        self.tela_professor.setupUi(self.stack2)
+        self.tela_Professor = Ui_Tela_Professor()
+        self.tela_Professor.setupUi(self.stack2)
 
         self.tela_team = Ui_Tela_Team()
         self.tela_team.setupUi(self.stack3)
@@ -59,7 +59,7 @@ class Main(QMainWindow, Ui_Main):
         self.tela_cadastrar.pushButton.clicked.connect(self.voltarLogin)
         #self.tela_cadastrar.pushButton_2.clicked.connect(self.voltarLogin)
 
-        self.tela_professor.pushButton_7.clicked.connect(self.voltarLogin)
+        self.tela_Professor.pushButton_7.clicked.connect(self.voltarLogin)
 
         self.tela_team.pushButton_7.clicked.connect(self.voltarLogin)
         '''self.tela_principal.ver_acervo.clicked.connect(self.openAcervoLivro)
