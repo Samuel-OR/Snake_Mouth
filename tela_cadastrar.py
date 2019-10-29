@@ -8,7 +8,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from BancoDeDados import Teacher
-from enviar import Enviar
 import BancoDeDados as BD
 
 class Ui_Tela_Cadastrar(object):
@@ -81,7 +80,6 @@ class Ui_Tela_Cadastrar(object):
 		self.retranslateUi(MainWindow)
 		QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-		self.funcionalidades()
 	def retranslateUi(self, MainWindow):
 		_translate = QtCore.QCoreApplication.translate
 		MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -92,22 +90,7 @@ class Ui_Tela_Cadastrar(object):
 		self.label_3.setText(_translate("MainWindow", "Nome Completo"))
 		self.label_4.setText(_translate("MainWindow", "Cadastrar"))
 
-	def funcionalidades(self):
-		#self.pushButton.clicked.connect(self.)
-		#Chama outra tela
-		self.pushButton_2.clicked.connect(self.cadastrar)
 
-	def cadastrar(self):
-	
-		email = self.lineEdit.text()
-		password = self.lineEdit_2.text()
-		name = self.lineEdit_3.text()
-		if(BD.registerTeacher(email, password, name)):
-			QMessageBox.about(None, "ATENÇÃO", "Cadastro Efetuado.") 
-			pass
-		else:
-			QMessageBox.about(None, "ATENÇÃO", "Email já cadastrado.") 
-			pass
 
 if __name__ == "__main__":
     import sys

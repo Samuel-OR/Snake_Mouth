@@ -330,13 +330,16 @@ class Ui_Tela_Professor(object):
 
     def funcionalidades(self):
         #self.pushButton.clicked.connect(self.atualizarPerfil)
+        """
         self.pushButton.clicked.connect(self.inicializar)
         self.pushButton_10.clicked.connect(self.progresso)
         self.pushButton_2.clicked.connect(self.cadastrarTime)
         self.pushButton_4.clicked.connect(self.cadastrarQuestao)
         self.pushButton_3.clicked.connect(self.pesquisar)
         self.pushButton_6.clicked.connect(self.atualizar_team)
-
+"""
+        pass
+        
     def inicializar(self):
         try:
             code = BD.codTEACHE
