@@ -1,5 +1,6 @@
 from random import randint
 from collections import defaultdict
+
 codTEACHE = 0
 codTeam = 0
 codQuestion = 0
