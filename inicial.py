@@ -13,14 +13,15 @@ import os
 from PyQt5.QtCore import pyqtSlot
 
 from sockets_cliente import *
-
+from userlogado import *
 
 class Ui_Main(QtWidgets.QWidget):
     def setupUi(self, Main):
         Main.setObjectName('Main')
         Main.resize(640, 480)
         self.client_socket = ClientSocket()
-
+        self.user_logado = UserLogado()
+        self.time_buscado = TimeBuscado
         self.QtStack = QtWidgets.QStackedLayout()
 
         self.stack0 = QtWidgets.QMainWindow()
@@ -60,6 +61,8 @@ class Main(QMainWindow, Ui_Main):
         self.tela_team.pushButton_7.clicked.connect(self.voltarLogin)
 
         self.tela_cadastrar.pushButton_2.clicked.connect(self.cadastrar)
+        self.tela_Professor.pushButton_3.clicked.connect(self.buscar_time)
+        self.tela_Professor.pushButton_6.clicked.connect(self.editar_time)
 
 
     def openTelaCadastrar(self):
@@ -71,10 +74,63 @@ class Main(QMainWindow, Ui_Main):
         user = self.tela_login.lineEdit.text()
         password = self.tela_login.lineEdit_2.text()
         string_login+=user+","+password
-        #self.client_socket.enviar_dados(string_login)
-        self.QtStack.setCurrentIndex(2)
+        user_logado = self.client_socket.enviar_dados(string_login)
 
+        if user_logado:
+            print(user_logado)
+            self.QtStack.setCurrentIndex(2)
+            print(user_logado)
+            self.user_logado.id = user_logado[1]
+            self.user_logado.siape = user_logado[2]
+            self.user_logado.nome = user_logado[3]
+            self.user_logado.email = user_logado[4]
+            self.user_logado.senha = user_logado[5]
+            self.user_logado.times = int(user_logado[6])
 
+            self.tela_Professor.lineEdit_1.setText(user_logado[2])
+            self.tela_Professor.lineEdit_3.setText(user_logado[3])
+            self.tela_Professor.lineEdit_4.setText(user_logado[4])
+            self.tela_Professor.lineEdit_5.setText(user_logado[5])
+            self.tela_Professor.textBrowser.setText(user_logado[6])
+        else:
+            QMessageBox.about(None, "ATENÇÃO", "Login invalido.")  
+
+    def buscar_time(self):
+        time = self.tela_Professor.lineEdit_11.text()
+        string = "buscaTime,"
+        string+=time
+        achado = self.client_socket.enviar_dados(string)
+        if achado:
+            self.tela_Professor.lineEdit_12.setText(achado[6])
+            self.tela_Professor.lineEdit_13.setText(achado[7])
+            self.tela_Professor.lineEdit_14.setText(achado[8])
+            self.tela_Professor.lineEdit_15.setText(achado[9])
+
+            self.time_buscado.id = achado[1]
+            print(self.time_buscado.id)
+            self.time_buscado.nome = achado[5]
+            self.time_buscado.c1 = achado[6]
+            self.time_buscado.c2 = achado[7]
+            self.time_buscado.c3 = achado[8]
+            self.time_buscado.c4 = achado[9]
+
+    def editar_time(self):
+        string_editar_time = "editarTime,"
+    
+        nameTeam = self.tela_Professor.lineEdit_11.text()
+        C1 = self.tela_Professor.lineEdit_12.text()
+        C2 = self.tela_Professor.lineEdit_13.text()
+        C3 = self.tela_Professor.lineEdit_14.text()
+        C4 = self.tela_Professor.lineEdit_15.text()
+
+        string_editar_time+=nameTeam+","+C1+","+C2+","+C3+","+C4+","+self.time_buscado.id
+        print(string_editar_time)
+        
+
+        if self.client_socket.enviar_dados(string_editar_time):
+            QMessageBox.about(None, "ATENÇÃO", "Edição Efetuada.") 
+        else:
+            QMessageBox.about(None, "ATENÇÃO", "Edição NÃO Efetuada.")         
 
     def cadastrar(self):
         string_cadastro = "cadastro,"
@@ -101,13 +157,15 @@ class Main(QMainWindow, Ui_Main):
         C3 = self.tela_Professor.lineEdit_10.text()
         C4 = self.tela_Professor.lineEdit_8.text()
 
-        string_cadastro_time+=nameTeam+","+C1+","+C2+","+C3+","+C4
+        string_cadastro_time+=nameTeam+","+C1+","+C2+","+C3+","+C4+","+self.user_logado.id
         print(string_cadastro_time)
         
 
         if self.client_socket.enviar_dados(string_cadastro_time):
             QMessageBox.about(None, "ATENÇÃO", "Cadastro Efetuado.") 
-            self.voltarLogin()
+            #self.textBrowser.setText(str(BD.BDteacher[code].teamCadastrados()))
+            self.user_logado.times+=1
+            self.tela_Professor.textBrowser.setText(str(self.user_logado.times))
         else:
             QMessageBox.about(None, "ATENÇÃO", "Cadastro NÃO Efetuado.") 
         
