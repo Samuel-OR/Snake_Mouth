@@ -6,13 +6,11 @@ Funcionalidades incluidas desde a última apresentação
 	+ Login;
 	+ Cadastrar/Pesquisar/Atualizar time;
 	+ Progresso do Time;
-	+ Cadastrar Questão;
-
 	+ Conexão com o Banco	
 		+ cadastrar professor/time com Banco
 
 Funcionalidades que estão faltando:
-	- Atualizar/editar dados do Professor;
 	- Funcinalidades do usuário Time.
 		- Submissão
 		- Classificação Geral
+	- Cadastrar Questão;
