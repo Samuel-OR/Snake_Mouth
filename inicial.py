@@ -6,14 +6,13 @@ from tela_cadastrar import Ui_Tela_Cadastrar
 from tela_Professor import Ui_Tela_Professor
 from tela_team import Ui_Tela_Team
 
-from PyQt5.QtGui import QPixmap
-import PyQt5
-import sys
-import os
 from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtGui import QPixmap
 
 from sockets_cliente import *
 from userlogado import *
+
+import PyQt5, sys, os
 
 class Ui_Main(QtWidgets.QWidget):
     def setupUi(self, Main):
