@@ -72,27 +72,36 @@ class Main(QMainWindow, Ui_Main):
 
         user = self.tela_login.lineEdit.text()
         password = self.tela_login.lineEdit_2.text()
+        
         string_login+=user+","+password
         user_logado = self.client_socket.enviar_dados(string_login)
 
         if user_logado:
+            
             print(user_logado)
-            self.QtStack.setCurrentIndex(2)
-            print(user_logado)
+            QMessageBox.about(None, "LOGIN", "Login efetuado.")  
+            
+
             self.user_logado.id = user_logado[1]
             self.user_logado.siape = user_logado[2]
             self.user_logado.nome = user_logado[3]
             self.user_logado.email = user_logado[4]
             self.user_logado.senha = user_logado[5]
             self.user_logado.times = int(user_logado[6])
+            self.user_logado.exercicios = int(user_logado[7])
 
             self.tela_Professor.lineEdit_1.setText(user_logado[2])
             self.tela_Professor.lineEdit_3.setText(user_logado[3])
             self.tela_Professor.lineEdit_4.setText(user_logado[4])
             self.tela_Professor.lineEdit_5.setText(user_logado[5])
             self.tela_Professor.textBrowser.setText(user_logado[6])
+            self.tela_Professor.textBrowser_2.setText(user_logado[7])
+
+            self.QtStack.setCurrentIndex(2)
+
+
         else:
-            QMessageBox.about(None, "ATENÇÃO", "Login invalido.")  
+            QMessageBox.about(None, "LOGIN", "Login invalido.")  
 
     def buscar_time(self):
         time = self.tela_Professor.lineEdit_11.text()
