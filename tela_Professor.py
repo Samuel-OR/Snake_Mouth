@@ -324,42 +324,7 @@ class Ui_Tela_Professor(object):
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
-        self.funcionalidades()
-        self.inicializar()
-
-
-    def funcionalidades(self):
-        #self.pushButton.clicked.connect(self.atualizarPerfil)
-        """
-        self.pushButton.clicked.connect(self.inicializar)
-        self.pushButton_10.clicked.connect(self.progresso)
-        self.pushButton_2.clicked.connect(self.cadastrarTime)
-        self.pushButton_4.clicked.connect(self.cadastrarQuestao)
-        self.pushButton_3.clicked.connect(self.pesquisar)
-        self.pushButton_6.clicked.connect(self.atualizar_team)
-"""
-        pass
         
-    def inicializar(self):
-        try:
-            code = BD.codTEACHE
-            
-            siape = BD.BDteacher[code].siape
-            email = BD.BDteacher[code]._email
-            nome = BD.BDteacher[code]._name
-            senha = BD.BDteacher[code]._password
-            
-            self.lineEdit_1.setText(siape)
-            self.lineEdit_3.setText(nome)
-            self.lineEdit_4.setText(email)
-            self.lineEdit_5.setText(senha)
-
-            #self.textBrowser_2.setText(str(BD.BDteacher[code].exerCadastrados()))
-            #self.textBrowser.setText(str(BD.BDteacher[code].teamCadastrados()))
-        except:
-            pass
-
     def progresso(self):
         self.tableWidget.clearContents()
         rowPosition = self.tableWidget.rowCount()
@@ -368,73 +333,6 @@ class Ui_Tela_Professor(object):
             self.tableWidget.setItem(rowPosition , 0, QTableWidgetItem(str(x._nameTeam)))
             self.tableWidget.setItem(rowPosition , 1, QTableWidgetItem(str(x.pontuação)))
             self.tableWidget.setItem(rowPosition , 2, QTableWidgetItem(str(x._corretas)))
-
-    def cadastrarTime(self):
-
-        code = BD.codTEACHE
-        nameTeam = self.lineEdit_2.text()
-        C1 = self.lineEdit_9.text()
-        C2 = self.lineEdit.text()
-        C3 = self.lineEdit_10.text()
-        C4 = self.lineEdit_8.text()
-        if(BD.BDteacher[code].registerTeam(nameTeam, C1, C2, C3, C4)):
-            QMessageBox.about(None, "CADASTRO", "Cadastro Efetuado.") 
-            self.textBrowser.setText(str(BD.BDteacher[code].teamCadastrados()))
-            pass
-        else:
-            QMessageBox.about(None, "CADASTRO", "Email já cadastrado.") 
-            pass
-
-    def cadastrarQuestao(self):
-
-        code = BD.codTEACHE
-        nome = self.lineEdit_6.text()
-        entrada = self.lineEdit_7.text()
-        saida = self.lineEdit_17.text()
-        describe = self.plainTextEdit.toPlainText()
-        time = 0
-
-        BD.BDteacher[code].registerQuestion(self, name, entrada, saida, describe, time)
-        QMessageBox.about(None, "CADASTRO", "Cadastro Efetuado.")         
-        self.textBrowser_2.setText(str(BD.BDteacher[code].exerCadastrados()))
-
-    def pesquisar(self):
-        code = BD.codTEACHE
-        nameTeam = self.lineEdit_11.text()
-        try:
-            listaID = BD.BDteacher[code].teamUSERS
-            for x in listaID:
-                if(BD.BDteams[x]._nameTeam == nameTeam):
-                    self.lineEdit_12.setText(BD.BDteams[x]._components[0])
-                    self.lineEdit_13.setText(BD.BDteams[x]._components[1])
-                    self.lineEdit_14.setText(BD.BDteams[x]._components[2])
-                    self.lineEdit_15.setText(BD.BDteams[x]._components[3])
-                    break;
-        except:
-            pass
-
-    def atualizar_team(self):
-        code = BD.codTEACHE
-        nameTeam = self.lineEdit_11.text()
-        C1 = self.lineEdit_12.text()
-        C2 = self.lineEdit_13.text()
-        C3 = self.lineEdit_14.text()
-        C4 = self.lineEdit_15.text()
-
-
-        try:
-            listaID = BD.BDteacher[code].teamUSERS
-            for x in listaID:
-                if(BD.BDteams[x]._nameTeam == nameTeam):
-                    BD.BDteams[x]._components[0] = C1
-                    BD.BDteams[x]._components[1] = C2
-                    BD.BDteams[x]._components[2] = C3
-                    BD.BDteams[x]._components[3] = C4
-                    break;
-        except:
-            pass
-
-        QMessageBox.about(None, "ATUALIZAR", "Time Atualizado.")         
 
 
     def retranslateUi(self, MainWindow):
