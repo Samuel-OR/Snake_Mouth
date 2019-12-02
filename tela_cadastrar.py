@@ -39,7 +39,7 @@ class Ui_Tela_Cadastrar(object):
 		self.pushButton_2.setObjectName("pushButton_2")
 		self.horizontalLayout_2.addWidget(self.pushButton_2)
 		self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-		self.verticalLayoutWidget.setGeometry(QtCore.QRect(160, 130, 351, 191))
+		self.verticalLayoutWidget.setGeometry(QtCore.QRect(160, 120, 351, 210))
 		self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
 		self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
 		self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -58,10 +58,19 @@ class Ui_Tela_Cadastrar(object):
 		self.verticalLayout.addWidget(self.lineEdit_2)
 		self.label_3 = QtWidgets.QLabel(self.verticalLayoutWidget)
 		self.label_3.setObjectName("label_3")
-		self.verticalLayout.addWidget(self.label_3)
 		self.lineEdit_3 = QtWidgets.QLineEdit(self.verticalLayoutWidget)
 		self.lineEdit_3.setObjectName("lineEdit_3")
+		self.verticalLayout.addWidget(self.label_3)
 		self.verticalLayout.addWidget(self.lineEdit_3)
+
+		self.label_5 = QtWidgets.QLabel(self.verticalLayoutWidget)
+		self.label_5.setObjectName("label_5")
+		self.verticalLayout.addWidget(self.label_5)
+
+		self.lineEdit_5 = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+		self.lineEdit_5.setObjectName("lineEdit_5")
+		self.verticalLayout.addWidget(self.lineEdit_5)
+		
 		self.label_4 = QtWidgets.QLabel(self.centralwidget)
 		self.label_4.setGeometry(QtCore.QRect(250, 60, 171, 41))
 		self.label_4.setStyleSheet("font-size: 30px;")
@@ -87,6 +96,7 @@ class Ui_Tela_Cadastrar(object):
 		self.label.setText(_translate("MainWindow", "Email"))
 		self.label_2.setText(_translate("MainWindow", "Senha"))
 		self.label_3.setText(_translate("MainWindow", "Nome Completo"))
+		self.label_5.setText(_translate("MainWindow", "SIAPE"))
 		self.label_4.setText(_translate("MainWindow", "Cadastrar"))
 
 
