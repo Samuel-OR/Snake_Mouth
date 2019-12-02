@@ -225,6 +225,8 @@ class Ui_Tela_Professor(object):
         self.label_20.setObjectName("label_20")
         self.pushButton_5 = QtWidgets.QPushButton(self.tab_4)
         self.pushButton_5.setGeometry(QtCore.QRect(410, 90, 81, 21))
+        self.pushButton_5.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+
         self.pushButton_5.setStyleSheet("background-color: #a8a894;\n"
 "border-radius: 7px;\n"
 "padding: 4px;\n"
@@ -484,8 +486,7 @@ class Ui_Tela_Professor(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), _translate("MainWindow", "Editar Time"))
 
         self.pushButton_10.setText(_translate("MainWindow", "Atualizar"))
-
-
+        
     def open_dialog_box(self):
             print("Botão pressionado")
             filename = QFileDialog.getOpenFileName()

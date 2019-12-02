@@ -1,6 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QMessageBox, QApplication, QTableWidgetItem
-
+from PyQt5.QtWidgets import QMainWindow, QMessageBox, QApplication, QTableWidgetItem,QFileDialog
 from tela_login import Ui_Tela_Login 
 from tela_cadastrar import Ui_Tela_Cadastrar
 from tela_Professor import Ui_Tela_Professor
@@ -56,9 +55,11 @@ class Main(QMainWindow, Ui_Main):
     
         self.tela_Professor.pushButton_2.clicked.connect(self.cadastrarTime)
         self.tela_Professor.pushButton_3.clicked.connect(self.buscar_time)
+        self.tela_Professor.pushButton_4.clicked.connect(self.cadastrarExer)
         self.tela_Professor.pushButton_6.clicked.connect(self.editar_time)
         self.tela_Professor.pushButton_7.clicked.connect(self.voltarLogin)
-        self.tela_Professor.pushButton_4.clicked.connect(self.cadastrarExer)
+        self.tela_Professor.pushButton_5.clicked.connect(self.selectFile_entrada)
+        self.tela_Professor.pushButton_9.clicked.connect(self.selectFile_saida)
 
 
         self.tela_team.pushButton_7.clicked.connect(self.voltarLogin)
@@ -66,6 +67,22 @@ class Main(QMainWindow, Ui_Main):
         self.tela_cadastrar.pushButton.clicked.connect(self.voltarLogin)
         self.tela_cadastrar.pushButton_2.clicked.connect(self.cadastrarProfessor)
 
+
+    def selectFile_entrada(self):
+        filename = QFileDialog.getOpenFileName()
+        self.path = filename[0]
+        self.file_size = str(os.path.getsize(filename[0]))
+        name = self.path.split("/")
+        name = name[len(name)-1]
+        self.tela_Professor.lineEdit_7.setText(name)
+
+    def selectFile_saida(self):
+        filename = QFileDialog.getOpenFileName()
+        self.path = filename[0]
+        self.file_size = str(os.path.getsize(filename[0]))
+        name = self.path.split("/")
+        name = name[len(name)-1]
+        self.tela_Professor.lineEdit_17.setText(name)
 
     def openTelaCadastrar(self):
         self.QtStack.setCurrentIndex(1)
@@ -186,10 +203,10 @@ class Main(QMainWindow, Ui_Main):
         nameExer = self.tela_Professor.lineEdit_6.text()
         entrada = self.tela_Professor.lineEdit_7.text()
         saida = self.tela_Professor.lineEdit_17.text()
-        #time = self.tela_Professor.spinBix()
+        time = self.tela_Professor.spinBox.text()
         describe = self.tela_Professor.lineEdit_17.text()
 
-        string_cadastro_exer+=nameExer+","+entrada+","+saida+","+describe+",0.0,"+self.user_logado.id
+        string_cadastro_exer+=nameExer+","+entrada+","+saida+","+describe+","+time+","+self.user_logado.id
         print("String:",string_cadastro_exer)
         
         if self.client_socket.enviar_dados(string_cadastro_exer):
