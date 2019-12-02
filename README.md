@@ -10,12 +10,48 @@ Com o Snake Mouth os professores já registrados poderão fazer o cadastro de ti
 	* MySQL
 	
 * Funcionalidades
-	* Cadastro de times e Professores
-	![]()
+	* Cadastro de Professores
+	
+	![Tela de cadastro](https://raw.github.com/Samuel-OR/Snake_Mouth/master/Telas_SnakeMouth/tela_cadastrar.png)
+	<br> Nessa tela o professor deverá realizar seu cadastro no sistema, o SIAPE será gerado automáticamente na hora 	do cadastro.
+	
 	* Login de de Professores e times
-	* Edição dos componentes dos times (User Professor)
-	* Edição dos dados do professor (User Professor)
-	* Submissão de algoritmos (User Time)
-	* Histórico de submissão (User Time)
-	* Visualização da classificação dos times
+	![Tela de Login](https://raw.github.com/Samuel-OR/Snake_Mouth/master/Telas_SnakeMouth/tela_login.png)
+	
+	* ÁREA DO PROFESSOR
+		* Perfil
+		
+		![](https://raw.github.com/Samuel-OR/Snake_Mouth/master/Telas_SnakeMouth/tela_prof_PERFIL.png)
+		
+		* Progresso dos Times
+		
+		![](https://raw.github.com/Samuel-OR/Snake_Mouth/master/Telas_SnakeMouth/tela_prof_PROGRESSO_TIMES.png)
+		
+		* Cadastrar Time
+		
+		![](https://raw.github.com/Samuel-OR/Snake_Mouth/master/Telas_SnakeMouth/tela_prof_CADASTRAR_TIME.png)
+		
+		* Cadastrar Questão
+		
+		![](https://raw.github.com/Samuel-OR/Snake_Mouth/master/Telas_SnakeMouth/tela_prof_CADASTRAR_QUEST%C3%83O.png)
+		
+		* Editar Time
+		
+		![](https://raw.github.com/Samuel-OR/Snake_Mouth/master/Telas_SnakeMouth/tela_prof_EDITAR_TIME.png)
+	
+	* ÁREA DO TIME
+		* Perfil
+		
+		![](https://raw.github.com/Samuel-OR/Snake_Mouth/master/Telas_SnakeMouth/tela_time_PERFIL.png)
+		
+		* Submissões de questões
+		
+		![](https://raw.github.com/Samuel-OR/Snake_Mouth/master/Telas_SnakeMouth/tela_time_SUBMISS%C3%95ES.png)
+		
+		* Classificação Geral
+		
+		![](https://raw.github.com/Samuel-OR/Snake_Mouth/master/Telas_SnakeMouth/tela_time_CLASSIFICA%C3%87%C3%83O.png)
+		
+	
+
 
