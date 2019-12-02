@@ -6,6 +6,7 @@ class UserLogado():
         self.email = str()
         self.senha = str()
         self.times = int()
+        self.exercicios = int()
 
 class TimeBuscado():
     def __init__(self):
