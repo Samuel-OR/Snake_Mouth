@@ -120,9 +120,13 @@ class Main(QMainWindow, Ui_Main):
             self.QtStack.setCurrentIndex(2)
 
 
+
         else:
             QMessageBox.about(None, "LOGIN", "Login invalido.")  
 
+        self.tela_login.lineEdit.setText("")
+        self.tela_login.lineEdit_2.setText("")
+    
     def buscar_time(self):
         time = self.tela_Professor.lineEdit_11.text()
         string = "buscaTime,"
@@ -160,6 +164,12 @@ class Main(QMainWindow, Ui_Main):
         else:
             QMessageBox.about(None, "ATENÇÃO", "Edição NÃO Efetuada.")         
 
+        self.tela_Professor.lineEdit_11.setText("")
+        self.tela_Professor.lineEdit_12.setText("")
+        self.tela_Professor.lineEdit_13.setText("")
+        self.tela_Professor.lineEdit_14.setText("")
+        self.tela_Professor.lineEdit_15.setText("")
+
     def cadastrarProfessor(self):
         string_cadastro = "cadastro,"
 
@@ -175,6 +185,10 @@ class Main(QMainWindow, Ui_Main):
             self.voltarLogin()
         else:
             QMessageBox.about(None, "ATENÇÃO", "Cadastro NÃO Efetuado.") 
+
+        self.tela_cadastrar.lineEdit.setText("")
+        self.tela_cadastrar.lineEdit_2.setText("")
+        self.tela_cadastrar.lineEdit_3.setText("")
 
     def cadastrarTime(self):
         string_cadastro_time = "cadastroTime,"
@@ -195,7 +209,13 @@ class Main(QMainWindow, Ui_Main):
             self.user_logado.times+=1
             self.tela_Professor.textBrowser.setText(str(self.user_logado.times))
         else:
-            QMessageBox.about(None, "ATENÇÃO", "Cadastro NÃO Efetuado.") 
+            QMessageBox.about(None, "ATENÇÃO", "Cadastro NÃO Efetuado.")
+
+        self.tela_Professor.lineEdit_2.setText("")
+        self.tela_Professor.lineEdit_9.setText("")
+        self.tela_Professor.lineEdit.setText("")
+        self.tela_Professor.lineEdit_10.setText("")
+        self.tela_Professor.lineEdit_8.setText("")
         
     def cadastrarExer(self):
         string_cadastro_exer = "cadastrarExer,"
@@ -203,10 +223,10 @@ class Main(QMainWindow, Ui_Main):
         nameExer = self.tela_Professor.lineEdit_6.text()
         entrada = self.tela_Professor.lineEdit_7.text()
         saida = self.tela_Professor.lineEdit_17.text()
+        describe = self.tela_Professor.plainTextEdit.toPlainText()
         time = self.tela_Professor.spinBox.text()
-        describe = self.tela_Professor.lineEdit_17.text()
 
-        string_cadastro_exer+=nameExer+","+entrada+","+saida+","+describe+","+time+","+self.user_logado.id
+        string_cadastro_exer+= nameExer+","+entrada+","+saida+","+describe+","+time+","+str(self.user_logado.id)
         print("String:",string_cadastro_exer)
         
         if self.client_socket.enviar_dados(string_cadastro_exer):
@@ -216,6 +236,28 @@ class Main(QMainWindow, Ui_Main):
             self.tela_Professor.label_18.setText(str(self.user_logado.exercicios))
         else:
             QMessageBox.about(None, "Exercício", "Cadastro NÃO Efetuado.") 
+
+        self.tela_Professor.lineEdit_6.setText("")
+        self.tela_Professor.lineEdit_7.setText("")
+        self.tela_Professor.lineEdit_17.setText("")
+        self.tela_Professor.plainTextEdit.setPlainText("")
+
+    def editarProfessor(self):
+        string_editar_time = "editarProfessor,"
+    
+        siape = self.tela_Professor.lineEdit_1.Text()
+        nome = self.tela_Professor.lineEdit_3.Text()
+        email = self.tela_Professor.lineEdit_4.Text()
+        senha = self.tela_Professor.lineEdit_5.Text()
+
+        string_editar_prof+=siape+","+nome+","+email+","+senha+","+self.time_buscado.id
+        print(string_editar_prof)
+        
+        if self.client_socket.enviar_dados(string_editar_prof):
+            QMessageBox.about(None, "Professor", "Atualizaçãod e dados efetuada.") 
+        else:
+            QMessageBox.about(None, "Professor", "Erro ao atualizar seus dados.")      
+
 
     def voltarLogin(self):
         self.QtStack.setCurrentIndex(0)
