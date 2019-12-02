@@ -17,14 +17,21 @@ class ClientSocket():
 	def enviar_dados(self,conteudo):
 		self.client_socket.send(conteudo.encode())
 		resposta = self.client_socket.recv(1024).decode()
-		resposta = resposta.split(',') 
+		ponto = resposta.split(';')
+		
+		print("Resposta:", resposta)
+
+		if resposta== "ok":
+			return True
+		
+		resposta = resposta.split(',')
+		print("Respostasplit:", resposta)
 
 		if resposta[0]== "okLogin" or resposta[0]== "okBuscaTime":
 			return resposta
 
-		if resposta[0]== "ok":
-			return True
-		
-		else:
-			return False
+		if ponto[0]=="okListarTimes":
+			return ponto
+
+		return False
 			 

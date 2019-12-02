@@ -1,5 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QMessageBox, QApplication, QTableWidgetItem,QFileDialog
+from PyQt5.QtCore import *
+
 from tela_login import Ui_Tela_Login 
 from tela_cadastrar import Ui_Tela_Cadastrar
 from tela_Professor import Ui_Tela_Professor
@@ -10,6 +12,8 @@ from PyQt5.QtGui import QPixmap
 
 from sockets_cliente import *
 from userlogado import *
+
+from random import randint
 
 import PyQt5, sys, os
 
@@ -61,6 +65,7 @@ class Main(QMainWindow, Ui_Main):
         self.tela_Professor.pushButton_6.clicked.connect(self.editar_time)
         self.tela_Professor.pushButton_7.clicked.connect(self.voltarLogin)
         self.tela_Professor.pushButton_9.clicked.connect(self.selectFile_saida)
+        self.tela_Professor.pushButton_10.clicked.connect(self.listarTimes)
 
 
         self.tela_team.pushButton_7.clicked.connect(self.voltarLogin)
@@ -100,7 +105,7 @@ class Main(QMainWindow, Ui_Main):
         if user_logado:
             
             print(user_logado)
-            QMessageBox.about(None, "LOGIN", "Login efetuado.")  
+            QMessageBox.about(None, "LOGIN", "Login efetuado com sucesso.")  
             
 
             self.user_logado.id = user_logado[1]
@@ -161,9 +166,9 @@ class Main(QMainWindow, Ui_Main):
         
 
         if self.client_socket.enviar_dados(string_editar_time):
-            QMessageBox.about(None, "ATENÇÃO", "Edição Efetuada.") 
+            QMessageBox.about(None, "User Professor", "Edição do time efetuada com sucesso.") 
         else:
-            QMessageBox.about(None, "ATENÇÃO", "Edição NÃO Efetuada.")         
+            QMessageBox.about(None, "User Professor", "Erro ao editar time.")         
 
         self.tela_Professor.lineEdit_11.setText("")
         self.tela_Professor.lineEdit_12.setText("")
@@ -184,10 +189,10 @@ class Main(QMainWindow, Ui_Main):
 
         print(string_cadastro)
         if self.client_socket.enviar_dados(string_cadastro):
-            QMessageBox.about(None, "ATENÇÃO", "Cadastro Efetuado.") 
+            QMessageBox.about(None, "User Professor", "Professor cadastrado com sucesso.") 
             self.voltarLogin()
         else:
-            QMessageBox.about(None, "ATENÇÃO", "Cadastro NÃO Efetuado.") 
+            QMessageBox.about(None, "User Professor", "Erro ao cadastrar o professor.") 
 
         self.tela_cadastrar.lineEdit.setText("")
         self.tela_cadastrar.lineEdit_2.setText("")
@@ -202,18 +207,19 @@ class Main(QMainWindow, Ui_Main):
         C2 = self.tela_Professor.lineEdit.text()
         C3 = self.tela_Professor.lineEdit_10.text()
         C4 = self.tela_Professor.lineEdit_8.text()
+        senha = self.tela_Professor.lineEdit_200.text()
 
-        string_cadastro_time+=nameTeam+","+C1+","+C2+","+C3+","+C4+","+self.user_logado.id
+        string_cadastro_time+=nameTeam+","+C1+","+C2+","+C3+","+C4+","+self.user_logado.id+","+senha
         print(string_cadastro_time)
         
 
         if self.client_socket.enviar_dados(string_cadastro_time):
-            QMessageBox.about(None, "ATENÇÃO", "Cadastro Efetuado.") 
+            QMessageBox.about(None, "User Professor", "Time cadastro com sucesso.") 
             #self.textBrowser.setText(str(BD.BDteacher[code].teamCadastrados()))
             self.user_logado.times+=1
             self.tela_Professor.textBrowser.setText(str(self.user_logado.times))
         else:
-            QMessageBox.about(None, "ATENÇÃO", "Cadastro NÃO Efetuado.")
+            QMessageBox.about(None, "User Professor", "Erro ao cadastrar o time.")
 
         self.tela_Professor.lineEdit_2.setText("")
         self.tela_Professor.lineEdit_9.setText("")
@@ -234,12 +240,12 @@ class Main(QMainWindow, Ui_Main):
         print("String:",string_cadastro_exer)
         
         if self.client_socket.enviar_dados(string_cadastro_exer):
-            QMessageBox.about(None, "Exercício", "Cadastro Efetuado.") 
+            QMessageBox.about(None, "User Professor", "Exercício cadastrado com sucesso.") 
             #self.textBrowser.setText(str(BD.BDteacher[code].teamCadastrados()))
             self.user_logado.exercicios+=1
             self.tela_Professor.label_18.setText(str(self.user_logado.exercicios))
         else:
-            QMessageBox.about(None, "Exercício", "Cadastro NÃO Efetuado.") 
+            QMessageBox.about(None, "User Professor", "Erro ao cadastrar o exercício.") 
 
         self.tela_Professor.lineEdit_6.setText("")
         self.tela_Professor.lineEdit_7.setText("")
@@ -258,10 +264,30 @@ class Main(QMainWindow, Ui_Main):
         print(string_editar_prof)
         
         if self.client_socket.enviar_dados(string_editar_prof):
-            QMessageBox.about(None, "Professor", "Atualização de dados efetuada.") 
+            QMessageBox.about(None, "User Professor", "Atualização de dados efetuada.") 
         else:
-            QMessageBox.about(None, "Professor", "Erro ao atualizar seus dados.")      
+            QMessageBox.about(None, "User Professor", "Erro ao atualizar seus dados.")      
 
+    def listarTimes(self):
+        string_listar_time = "listarTimes,"
+        string_listar_time += self.user_logado.id
+        
+        achado = self.client_socket.enviar_dados(string_listar_time)
+        print("Achado:", achado)
+        if achado:
+            res = achado[1:]
+            self.tela_Professor.tableWidget.setRowCount(0)
+            for x in res:
+                x = x.split(',')
+                rowPosition = self.tela_Professor.tableWidget.rowCount()
+                self.tela_Professor.tableWidget.insertRow(rowPosition)
+                self.tela_Professor.tableWidget.setItem(rowPosition , 0, QTableWidgetItem(x[3]))
+                self.tela_Professor.tableWidget.setItem(rowPosition , 1, QTableWidgetItem("Falta fazer"))
+                self.tela_Professor.tableWidget.setItem(rowPosition , 2, QTableWidgetItem(str(x[4])))    
+            
+            #QMessageBox.about(None, "ATENÇÃO", "Edição Efetuada.") 
+        else:
+            QMessageBox.about(None, "User Professor", "Erro ao listar times.")         
 
     def voltarLogin(self):
         self.QtStack.setCurrentIndex(0)
