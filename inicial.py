@@ -53,15 +53,18 @@ class Main(QMainWindow, Ui_Main):
 
         self.tela_login.pushButton.clicked.connect(self.openTelaCadastrar)
         self.tela_login.pushButton_2.clicked.connect(self.entrar)
-        self.tela_cadastrar.pushButton.clicked.connect(self.voltarLogin)
-        #self.tela_cadastrar.pushButton_2.clicked.connect(self.voltarLogin)
-        self.tela_Professor.pushButton_7.clicked.connect(self.voltarLogin)
+    
         self.tela_Professor.pushButton_2.clicked.connect(self.cadastrarTime)
-        self.tela_team.pushButton_7.clicked.connect(self.voltarLogin)
-
-        self.tela_cadastrar.pushButton_2.clicked.connect(self.cadastrar)
         self.tela_Professor.pushButton_3.clicked.connect(self.buscar_time)
         self.tela_Professor.pushButton_6.clicked.connect(self.editar_time)
+        self.tela_Professor.pushButton_7.clicked.connect(self.voltarLogin)
+        self.tela_Professor.pushButton_4.clicked.connect(self.cadastrarExer)
+
+
+        self.tela_team.pushButton_7.clicked.connect(self.voltarLogin)
+        
+        self.tela_cadastrar.pushButton.clicked.connect(self.voltarLogin)
+        self.tela_cadastrar.pushButton_2.clicked.connect(self.cadastrarProfessor)
 
 
     def openTelaCadastrar(self):
@@ -140,7 +143,7 @@ class Main(QMainWindow, Ui_Main):
         else:
             QMessageBox.about(None, "ATENÇÃO", "Edição NÃO Efetuada.")         
 
-    def cadastrar(self):
+    def cadastrarProfessor(self):
         string_cadastro = "cadastro,"
 
         email = self.tela_cadastrar.lineEdit.text()
@@ -177,6 +180,26 @@ class Main(QMainWindow, Ui_Main):
         else:
             QMessageBox.about(None, "ATENÇÃO", "Cadastro NÃO Efetuado.") 
         
+    def cadastrarExer(self):
+        string_cadastro_exer = "cadastrarExer,"
+
+        nameExer = self.tela_Professor.lineEdit_6.text()
+        entrada = self.tela_Professor.lineEdit_7.text()
+        saida = self.tela_Professor.lineEdit_17.text()
+        #time = self.tela_Professor.spinBix()
+        describe = self.tela_Professor.lineEdit_17.text()
+
+        string_cadastro_exer+=nameExer+","+entrada+","+saida+","+describe+",0.0,"+self.user_logado.id
+        print("String:",string_cadastro_exer)
+        
+        if self.client_socket.enviar_dados(string_cadastro_exer):
+            QMessageBox.about(None, "Exercício", "Cadastro Efetuado.") 
+            #self.textBrowser.setText(str(BD.BDteacher[code].teamCadastrados()))
+            self.user_logado.exercicios+=1
+            self.tela_Professor.label_18.setText(str(self.user_logado.exercicios))
+        else:
+            QMessageBox.about(None, "Exercício", "Cadastro NÃO Efetuado.") 
+
     def voltarLogin(self):
         self.QtStack.setCurrentIndex(0)
 
