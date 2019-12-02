@@ -8,7 +8,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
-import BancoDeDados as BD
 
 class Ui_Tela_Login(object):
     def setupUi(self, MainWindow):

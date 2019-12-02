@@ -11,7 +11,6 @@ from PyQt5.QtWidgets import QFileDialog
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtWidgets import QTableWidgetItem
 from PyQt5 import QtCore, QtGui, QtWidgets, Qt
-import BancoDeDados as BD
 
 class Ui_Tela_Team(object):
     def setupUi(self, MainWindow):

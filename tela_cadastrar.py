@@ -7,8 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
-from BancoDeDados import Teacher
-import BancoDeDados as BD
+
 
 class Ui_Tela_Cadastrar(object):
 	def setupUi(self, MainWindow):

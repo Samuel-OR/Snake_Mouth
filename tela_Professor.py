@@ -10,7 +10,6 @@ from PyQt5.QtWidgets import QFileDialog
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtWidgets import QTableWidgetItem
 from PyQt5 import QtCore, QtGui, QtWidgets, Qt
-import BancoDeDados as BD
 
 
 class Ui_Tela_Professor(object):
@@ -484,6 +483,7 @@ class Ui_Tela_Professor(object):
         self.pushButton_6.setText(_translate("MainWindow", "Alterar"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), _translate("MainWindow", "Editar Time"))
 
+        self.pushButton_10.setText(_translate("MainWindow", "Atualizar"))
 
 
     def open_dialog_box(self):
