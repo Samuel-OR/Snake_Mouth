@@ -53,12 +53,13 @@ class Main(QMainWindow, Ui_Main):
         self.tela_login.pushButton.clicked.connect(self.openTelaCadastrar)
         self.tela_login.pushButton_2.clicked.connect(self.entrar)
     
+        self.tela_Professor.pushButton.clicked.connect(self.editarProfessor)
         self.tela_Professor.pushButton_2.clicked.connect(self.cadastrarTime)
         self.tela_Professor.pushButton_3.clicked.connect(self.buscar_time)
         self.tela_Professor.pushButton_4.clicked.connect(self.cadastrarExer)
+        self.tela_Professor.pushButton_5.clicked.connect(self.selectFile_entrada)
         self.tela_Professor.pushButton_6.clicked.connect(self.editar_time)
         self.tela_Professor.pushButton_7.clicked.connect(self.voltarLogin)
-        self.tela_Professor.pushButton_5.clicked.connect(self.selectFile_entrada)
         self.tela_Professor.pushButton_9.clicked.connect(self.selectFile_saida)
 
 
@@ -176,8 +177,10 @@ class Main(QMainWindow, Ui_Main):
         email = self.tela_cadastrar.lineEdit.text()
         password = self.tela_cadastrar.lineEdit_2.text()
         name = self.tela_cadastrar.lineEdit_3.text()
+        siape = self.tela_cadastrar.lineEdit_5.text()
 
-        string_cadastro+=name+","+email+","+password
+
+        string_cadastro+=name+","+email+","+password+","+siape
 
         print(string_cadastro)
         if self.client_socket.enviar_dados(string_cadastro):
@@ -189,6 +192,7 @@ class Main(QMainWindow, Ui_Main):
         self.tela_cadastrar.lineEdit.setText("")
         self.tela_cadastrar.lineEdit_2.setText("")
         self.tela_cadastrar.lineEdit_3.setText("")
+        self.tela_cadastrar.lineEdit_5.setText("")
 
     def cadastrarTime(self):
         string_cadastro_time = "cadastroTime,"
@@ -243,18 +247,18 @@ class Main(QMainWindow, Ui_Main):
         self.tela_Professor.plainTextEdit.setPlainText("")
 
     def editarProfessor(self):
-        string_editar_time = "editarProfessor,"
+        string_editar_prof = "editarProfessor,"
     
-        siape = self.tela_Professor.lineEdit_1.Text()
-        nome = self.tela_Professor.lineEdit_3.Text()
-        email = self.tela_Professor.lineEdit_4.Text()
-        senha = self.tela_Professor.lineEdit_5.Text()
+        siape = self.tela_Professor.lineEdit_1.text()
+        nome = self.tela_Professor.lineEdit_3.text()
+        email = self.tela_Professor.lineEdit_4.text()
+        senha = self.tela_Professor.lineEdit_5.text()
 
-        string_editar_prof+=siape+","+nome+","+email+","+senha+","+self.time_buscado.id
+        string_editar_prof+=siape+","+nome+","+email+","+senha+","+str(self.user_logado.id)
         print(string_editar_prof)
         
         if self.client_socket.enviar_dados(string_editar_prof):
-            QMessageBox.about(None, "Professor", "Atualizaçãod e dados efetuada.") 
+            QMessageBox.about(None, "Professor", "Atualização de dados efetuada.") 
         else:
             QMessageBox.about(None, "Professor", "Erro ao atualizar seus dados.")      
 
