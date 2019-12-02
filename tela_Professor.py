@@ -114,11 +114,16 @@ class Ui_Tela_Professor(object):
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
         self.tableWidget.verticalHeader().setCascadingSectionResizes(False)
         self.tableWidget.verticalHeader().setHighlightSections(True)
+
+        self.tabWidget.setStyleSheet(
+        "text-align: center;"
+        )
+
         self.tabWidget.addTab(self.tab_3, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
         self.pushButton_2 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_2.setGeometry(QtCore.QRect(200, 280, 151, 31))
+        self.pushButton_2.setGeometry(QtCore.QRect(200, 300, 151, 31))
         self.pushButton_2.setStyleSheet("background-color: #4ebf6d;\n"
 "border-radius: 7px;\n"
 "padding: 4px;\n"
@@ -140,7 +145,7 @@ class Ui_Tela_Professor(object):
         self.lineEdit_2.setGeometry(QtCore.QRect(130, 70, 361, 29))
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.tab_2)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(20, 120, 471, 138))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(20, 120, 471, 158))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -156,9 +161,16 @@ class Ui_Tela_Professor(object):
         self.label_22 = QtWidgets.QLabel(self.horizontalLayoutWidget)
         self.label_22.setObjectName("label_22")
         self.verticalLayout_6.addWidget(self.label_22)
+        
         self.label_23 = QtWidgets.QLabel(self.horizontalLayoutWidget)
         self.label_23.setObjectName("label_23")
         self.verticalLayout_6.addWidget(self.label_23)
+        
+        self.senha = QtWidgets.QLabel(self.horizontalLayoutWidget)
+        self.senha.setObjectName("senha")
+        self.verticalLayout_6.addWidget(self.senha)
+
+
         self.horizontalLayout.addLayout(self.verticalLayout_6)
         self.verticalLayout_5 = QtWidgets.QVBoxLayout()
         self.verticalLayout_5.setObjectName("verticalLayout_5")
@@ -171,9 +183,17 @@ class Ui_Tela_Professor(object):
         self.lineEdit_10 = QtWidgets.QLineEdit(self.horizontalLayoutWidget)
         self.lineEdit_10.setObjectName("lineEdit_10")
         self.verticalLayout_5.addWidget(self.lineEdit_10)
+        
         self.lineEdit_8 = QtWidgets.QLineEdit(self.horizontalLayoutWidget)
         self.lineEdit_8.setObjectName("lineEdit_8")
         self.verticalLayout_5.addWidget(self.lineEdit_8)
+        
+
+        self.lineEdit_200 = QtWidgets.QLineEdit(self.horizontalLayoutWidget)
+        self.lineEdit_200.setObjectName("lineEdit_200")
+        self.verticalLayout_5.addWidget(self.lineEdit_200)
+        
+
         self.horizontalLayout.addLayout(self.verticalLayout_5)
         self.tabWidget.addTab(self.tab_2, "")
         self.tab_4 = QtWidgets.QWidget()
@@ -328,11 +348,11 @@ class Ui_Tela_Professor(object):
     def progresso(self):
         self.tableWidget.clearContents()
         rowPosition = self.tableWidget.rowCount()
-        for x in BD.BDteams.values():
+        for x in range(0,10):
             self.tableWidget.insertRow(rowPosition)
-            self.tableWidget.setItem(rowPosition , 0, QTableWidgetItem(str(x._nameTeam)))
-            self.tableWidget.setItem(rowPosition , 1, QTableWidgetItem(str(x.pontuação)))
-            self.tableWidget.setItem(rowPosition , 2, QTableWidgetItem(str(x._corretas)))
+            self.tableWidget.setItem(rowPosition , 0, QTableWidgetItem("Samuel"))
+            self.tableWidget.setItem(rowPosition , 1, QTableWidgetItem("É"))
+            self.tableWidget.setItem(rowPosition , 2, QTableWidgetItem("Lindo"))
 
 
     def retranslateUi(self, MainWindow):
@@ -362,6 +382,8 @@ class Ui_Tela_Professor(object):
         self.label_21.setText(_translate("MainWindow", "Componente 2"))
         self.label_22.setText(_translate("MainWindow", "Componente 3"))
         self.label_23.setText(_translate("MainWindow", "Componente 4"))
+        self.senha.setText(_translate("MainWindow", "Password:"))
+
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Cadastrar Time"))
         self.label_15.setText(_translate("MainWindow", "Nome da questão"))
         self.label_16.setText(_translate("MainWindow", "Descrição"))
@@ -385,20 +407,10 @@ class Ui_Tela_Professor(object):
 
         self.pushButton_10.setText(_translate("MainWindow", "Atualizar"))
         
-    def open_dialog_box(self):
-            print("Botão pressionado")
-            filename = QFileDialog.getOpenFileName()
-            path = filename[0]
-            self.lineEdit_7.setText(path)
-            print(path)
-
-    def open_dialog_box_2(self):
-        print("Botão pressionado")
-        filename = QFileDialog.getOpenFileName()
-        path = filename[0]
-        self.lineEdit_17.setText(path)
-        print(path)
-
+        self.lineEdit_1.setDisabled(True)
+        
+        self.textBrowser.setDisabled(True)
+        self.textBrowser_2.setDisabled(True)
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

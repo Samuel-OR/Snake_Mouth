@@ -71,12 +71,15 @@ class Ui_Tela_Login(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        self.lineEdit_2.setEchoMode(self.lineEdit_2.Password)
+
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton.setText(_translate("MainWindow", "Cadastrar"))
         self.pushButton_2.setText(_translate("MainWindow", "Login"))
-        self.label.setText(_translate("MainWindow", "Usuário"))
+        self.label.setText(_translate("MainWindow", "Usuário / Email"))
         self.label_2.setText(_translate("MainWindow", "Senha"))
         self.label_3.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Todos os direitos reservados.</p><p align=\"center\">Git @Samuel-OR @thalianegomes </p></body></html>"))
 
