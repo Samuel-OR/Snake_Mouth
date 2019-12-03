@@ -68,6 +68,32 @@ class Ui_Tela_Login(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
+        self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
+        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(220, 50, 208, 31))
+        self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        
+        self.radioButton = QtWidgets.QRadioButton(self.horizontalLayoutWidget_2)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setItalic(True)
+        font.setWeight(75)
+        self.radioButton.setFont(font)
+        self.radioButton.setObjectName("radioButton")
+        self.horizontalLayout_2.addWidget(self.radioButton)
+        self.radioButton_2 = QtWidgets.QRadioButton(self.horizontalLayoutWidget_2)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setItalic(True)
+        font.setWeight(75)
+        self.radioButton_2.setFont(font)
+        self.radioButton_2.setObjectName("radioButton_2")
+        self.horizontalLayout_2.addWidget(self.radioButton_2)
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -82,7 +108,8 @@ class Ui_Tela_Login(object):
         self.label.setText(_translate("MainWindow", "Usuário / Email"))
         self.label_2.setText(_translate("MainWindow", "Senha"))
         self.label_3.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Todos os direitos reservados.</p><p align=\"center\">Git @Samuel-OR @thalianegomes </p></body></html>"))
-
+        self.radioButton.setText(_translate("MainWindow", "Time"))
+        self.radioButton_2.setText(_translate("MainWindow", "Professor"))
 
 if __name__ == "__main__":
     import sys
