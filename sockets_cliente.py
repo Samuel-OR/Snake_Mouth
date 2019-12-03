@@ -26,7 +26,7 @@ class ClientSocket():
 		if resposta[0]== "okLogin" or resposta[0]== "okBuscaTime":
 			return resposta
 
-		if ponto[0]=="okListarTimes":
+		if ponto[0]=="okListarTimes" or ponto[0]=="okPegarExercicios" or ponto[0]=="okatualizarHistorico":
 			return ponto
 
 		return False

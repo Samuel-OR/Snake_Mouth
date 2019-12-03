@@ -70,6 +70,10 @@ class Main(QMainWindow, Ui_Main):
         self.tela_Professor.pushButton_10.clicked.connect(self.listarTimes)
 
 
+        self.tela_team.pushButton.clicked.connect(self.submeter)
+        self.tela_team.pushButton_2.clicked.connect(self.atualizarHistorico)
+        self.tela_team.pushButton_3.clicked.connect(self.atualizarClassi)
+        self.tela_team.pushButton_5.clicked.connect(self.selectFile_entradaTIME)
         self.tela_team.pushButton_7.clicked.connect(self.voltarLogin)
         
         self.tela_cadastrar.pushButton.clicked.connect(self.voltarLogin)
@@ -91,6 +95,15 @@ class Main(QMainWindow, Ui_Main):
         name = self.path.split("/")
         name = name[len(name)-1]
         self.tela_Professor.lineEdit_17.setText(name)
+
+    def selectFile_entradaTIME(self):
+        filename = QFileDialog.getOpenFileName()
+        self.path = filename[0]
+        self.file_size = str(os.path.getsize(filename[0]))
+        name = self.path.split("/")
+        name = name[len(name)-1]
+        self.tela_team.label_6.setText(name)
+
 
     def openTelaCadastrar(self):
         self.QtStack.setCurrentIndex(1)
@@ -142,14 +155,17 @@ class Main(QMainWindow, Ui_Main):
             user_logado = self.client_socket.enviar_dados(string_login)
             
             if user_logado:   
-                QMessageBox.about(None, "LOGIN PROFESSOR", "Login efetuado com sucesso.")  
+                QMessageBox.about(None, "LOGIN TIME", "Login efetuado com sucesso.")  
 
                 self.time_buscado.id = user_logado[1]
+                self.time_buscado.prof = user_logado[2]
                 self.time_buscado.nome = user_logado[4]
                 self.time_buscado.c1 = user_logado[6]
                 self.time_buscado.c2 = user_logado[7]
                 self.time_buscado.c3 = user_logado[8]
                 self.time_buscado.c4 = user_logado[9]
+
+                self.pegarExercicios()
 
                 self.tela_team.lineEdit_1.setText(user_logado[6])
                 self.tela_team.lineEdit_1.setDisabled(True)
@@ -160,14 +176,38 @@ class Main(QMainWindow, Ui_Main):
                 self.tela_team.lineEdit_5.setText(user_logado[9])
                 self.tela_team.lineEdit_5.setDisabled(True)
                 
+                for x,y in self.exerciciosAtivos.nome.items():
+                    self.tela_team.comboBox.addItem(y)
+
                 self.QtStack.setCurrentIndex(3)
             else:
-                QMessageBox.about(None, "LOGIN PROFESSOR", "Login professor invalido.")  
+                QMessageBox.about(None, "LOGIN TIME", "Login professor invalido.")  
 
 
         self.tela_login.lineEdit.setText("")
         self.tela_login.lineEdit_2.setText("")
     
+    def pegarExercicios(self):
+       
+        string_pegar_exercicios = "pegarExercicios,"
+        string_pegar_exercicios += self.time_buscado.prof
+        
+        achado = self.client_socket.enviar_dados(string_pegar_exercicios)
+        if achado:
+            res = achado[1:]
+            
+            for x in res:
+                x = x.split(',')
+                self.exerciciosAtivos.idQuestion[x[0]] = x[0]
+                self.exerciciosAtivos.nome[x[0]] = x[1]
+                self.exerciciosAtivos.entrada[x[0]] = x[2]
+                self.exerciciosAtivos.saida[x[0]] = x[3]
+                self.exerciciosAtivos.tempo[x[0]] = x[3]
+            
+            #QMessageBox.about(None, "ATENÇÃO", "Edição Efetuada.") 
+        else:
+            QMessageBox.about(None, "User Professor", "Erro pegar time.")       
+        
     def buscar_time(self):
         time = self.tela_Professor.lineEdit_11.text()
         string = "buscaTime,"
@@ -314,6 +354,51 @@ class Main(QMainWindow, Ui_Main):
             #QMessageBox.about(None, "ATENÇÃO", "Edição Efetuada.") 
         else:
             QMessageBox.about(None, "User Professor", "Erro ao listar times.")         
+
+    def submeter(self):
+        string_editar_prof = "submeter,"
+        print(string_editar_prof)
+        pass
+
+    def atualizarHistorico(self):
+        string_atualizar_hist = "atualizarHistorico,"
+        string_atualizar_hist += self.time_buscado.id
+        achado = self.client_socket.enviar_dados(string_atualizar_hist)
+        
+        if achado:
+            res = achado[1:]
+            self.tela_team.tableWidget_3.setRowCount(0)
+            for x in res:
+                x = x.split(',')
+                rowPosition = self.tela_team.tableWidget_3.rowCount()
+                self.tela_team.tableWidget_3.insertRow(rowPosition)
+                self.tela_team.tableWidget_3.setItem(rowPosition , 0, QTableWidgetItem(x[2]))
+                self.tela_team.tableWidget_3.setItem(rowPosition , 1, QTableWidgetItem(x[3]))
+                self.tela_team.tableWidget_3.setItem(rowPosition , 2, QTableWidgetItem(str(x[4])))    
+            
+            #QMessageBox.about(None, "ATENÇÃO", "Edição Efetuada.") 
+        else:
+            QMessageBox.about(None, "User TIME", "Erro ao atualizar o histórico.")
+
+    def atualizarClassi(self):
+        string_listar_time = "listarTimes,"
+        string_listar_time += self.time_buscado.prof
+        
+        achado = self.client_socket.enviar_dados(string_listar_time)
+        if achado:
+            res = achado[1:]
+            self.tela_team.tableWidget_2.setRowCount(0)
+            for x in res:
+                x = x.split(',')
+                rowPosition = self.tela_team.tableWidget_2.rowCount()
+                self.tela_team.tableWidget_2.insertRow(rowPosition)
+                self.tela_team.tableWidget_2.setItem(rowPosition , 0, QTableWidgetItem(x[3]))
+                self.tela_team.tableWidget_2.setItem(rowPosition , 1, QTableWidgetItem("Falta fazer"))
+                self.tela_team.tableWidget_2.setItem(rowPosition , 2, QTableWidgetItem(str(x[4])))    
+            
+            #QMessageBox.about(None, "ATENÇÃO", "Edição Efetuada.") 
+        else:
+            QMessageBox.about(None, "User Professor", "Erro ao listar times.")
 
     def voltarLogin(self):
         self.QtStack.setCurrentIndex(0)
