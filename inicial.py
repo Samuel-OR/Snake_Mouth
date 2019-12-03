@@ -16,6 +16,8 @@ from userlogado import *
 from random import randint
 
 import PyQt5, sys, os
+import os
+import time
 
 class Ui_Main(QtWidgets.QWidget):
     def setupUi(self, Main):
@@ -86,7 +88,8 @@ class Main(QMainWindow, Ui_Main):
         self.file_size = str(os.path.getsize(filename[0]))
         name = self.path.split("/")
         name = name[len(name)-1]
-        self.tela_Professor.lineEdit_7.setText(name)
+        #self.tela_Professor.lineEdit_7.setText(name)
+        self.tela_Professor.lineEdit_7.setText(filename[0])
 
     def selectFile_saida(self):
         filename = QFileDialog.getOpenFileName()
@@ -94,7 +97,8 @@ class Main(QMainWindow, Ui_Main):
         self.file_size = str(os.path.getsize(filename[0]))
         name = self.path.split("/")
         name = name[len(name)-1]
-        self.tela_Professor.lineEdit_17.setText(name)
+        #self.tela_Professor.lineEdit_17.setText(name)
+        self.tela_Professor.lineEdit_17.setText(filename[0])
 
     def selectFile_entradaTIME(self):
         filename = QFileDialog.getOpenFileName()
@@ -102,8 +106,8 @@ class Main(QMainWindow, Ui_Main):
         self.file_size = str(os.path.getsize(filename[0]))
         name = self.path.split("/")
         name = name[len(name)-1]
-        self.tela_team.label_6.setText(name)
-
+        #self.tela_team.label_6.setText(name)
+        self.tela_team.label_6.setText(filename[0])
 
     def openTelaCadastrar(self):
         self.QtStack.setCurrentIndex(1)
@@ -198,6 +202,7 @@ class Main(QMainWindow, Ui_Main):
             
             for x in res:
                 x = x.split(',')
+                self.exerciciosAtivos.Name_id[x[1]] = x[0]
                 self.exerciciosAtivos.idQuestion[x[0]] = x[0]
                 self.exerciciosAtivos.nome[x[0]] = x[1]
                 self.exerciciosAtivos.entrada[x[0]] = x[2]
@@ -354,11 +359,105 @@ class Main(QMainWindow, Ui_Main):
             #QMessageBox.about(None, "ATENÇÃO", "Edição Efetuada.") 
         else:
             QMessageBox.about(None, "User Professor", "Erro ao listar times.")         
-
+    '''
     def submeter(self):
-        string_editar_prof = "submeter,"
-        print(string_editar_prof)
-        pass
+        
+        nome = self.tela_team.comboBox.currentText()
+        idQuestion = self.exerciciosAtivos.Name_id[nome]
+        print(idQuestion)
+        
+        string_submeter = "submeter,"
+        string_submeter += self.time_buscado.id+','
+        string_submeter += self.exerciciosAtivos.entrada[idQuestion]+','
+        string_submeter += self.exerciciosAtivos.saida[idQuestion]+','
+        string_submeter += self.exerciciosAtivos.tempo[idQuestion]+','
+        string_submeter += self.tela_team.label_6.text()
+        print(string_submeter)
+        
+        achado = self.client_socket.enviar_dados(string_submeter)
+        if achado:
+            QMessageBox.about(None, "User TIME", "Submissão efetuada.") 
+        else:
+            QMessageBox.about(None, "User TIME", "Erro na Submissão.")
+    '''
+    def submeter(self):
+        
+        nome = self.tela_team.comboBox.currentText()
+        idQuestion = self.exerciciosAtivos.Name_id[nome]
+        
+        idTime = self.time_buscado.id
+        entrada = self.exerciciosAtivos.entrada[idQuestion]
+        saida = self.exerciciosAtivos.saida[idQuestion]
+        tempo = self.exerciciosAtivos.tempo[idQuestion]
+        codigo = self.tela_team.label_6.text()
+        
+        solucao = str("ERRO NO ARQUIVO")
+        try:
+            tempoLimite = 1000
+            
+            timeINI = time.clock()
+            os.system("nohup python3 {} < {} > saidaAPRES.txt".format(codigo, entrada))
+            timeFIM = time.clock()
+
+            print("TEMPO mili: ", (timeFIM- timeINI)*100000)
+        
+            saidaAPRES = open('saidaAPRES.txt', 'r')
+            saidaAPRES = (saidaAPRES.readlines())
+            saidaAPRES = ' '.join(saidaAPRES)
+
+            if("Traceback" in saidaAPRES or "NameError" in saidaAPRES):
+                solucao = "ERRO DE SINTAXE"
+                print("ERRO DE SINTAXE")
+            else:
+
+                if(((timeFIM- timeINI)*100000) > tempoLimite):
+                    solucao = "ESTOURO DE TEMPO."
+                    print("ESTOURO DE TEMPO.")
+                else:
+
+                    os.system("python3 {} < {} > saidaBRUTO.txt".format(codigo, entrada))
+                    saidaPROF = open(saida, 'r')
+                    saidaPROF = (saidaPROF.readlines())
+                
+                    saidaBRUTO=open('saidaBRUTO.txt', 'r')
+                    saidaBRUTO = (saidaBRUTO.readlines())
+                
+                    if saidaPROF == saidaBRUTO:
+                        solucao = "RESPOSTA CORRETA"
+                        print("RESPOSTA CORRETA")
+                    else:
+                        #VERIFICAR ERRO DE APRESENTAÇÃO
+                            #-i = remove case sentitive
+                            #-w = Ignora espaços em branco
+                            #-b = Ignore as mudanças na quantidade de espaço em branco.
+                            #-B = Ignore as alterações cujas linhas estão todas em branco.  
+                        os.system("diff -b -B -w -i saidaPROF.txt saidaBRUTO.txt > resulEXEC.txt")
+                        resulEXEC = open('resulEXEC.txt', 'r')
+                
+                        if(len(resulEXEC.readlines())==0):
+                            solucao = "ERRO DE APRESENTAÇÃO"
+                            print("ERRO DE APRESENTAÇÃO")
+                        else:
+                            solucao = "RESPOSTA INCORRETA"
+                            print("RESPOSTA INCORRETA")
+                        os.system("rm resulEXEC.txt")
+                    os.system("rm saidaBRUTO.txt")
+                os.system("rm saidaAPRES.txt")
+               
+            QMessageBox.about(None, "User TIME", "Submissão efetuada.") 
+        except:
+            QMessageBox.about(None, "User TIME", "Erro na Submissão.")
+        
+        string_Historico = "cadastrarHist,"
+        string_Historico+= self.exerciciosAtivos.nome[idQuestion]+','
+        string_Historico+= '2019/09:30,'
+        string_Historico+= solucao+','
+        string_Historico+= str(idTime)
+
+        self.client_socket.enviar_dados(string_Historico)
+    
+
+        self.atualizarHistorico()
 
     def atualizarHistorico(self):
         string_atualizar_hist = "atualizarHistorico,"
@@ -372,9 +471,9 @@ class Main(QMainWindow, Ui_Main):
                 x = x.split(',')
                 rowPosition = self.tela_team.tableWidget_3.rowCount()
                 self.tela_team.tableWidget_3.insertRow(rowPosition)
-                self.tela_team.tableWidget_3.setItem(rowPosition , 0, QTableWidgetItem(x[2]))
-                self.tela_team.tableWidget_3.setItem(rowPosition , 1, QTableWidgetItem(x[3]))
-                self.tela_team.tableWidget_3.setItem(rowPosition , 2, QTableWidgetItem(str(x[4])))    
+                self.tela_team.tableWidget_3.setItem(rowPosition , 0, QTableWidgetItem(x[1]))
+                self.tela_team.tableWidget_3.setItem(rowPosition , 1, QTableWidgetItem(x[2]))
+                self.tela_team.tableWidget_3.setItem(rowPosition , 2, QTableWidgetItem(str(x[3])))    
             
             #QMessageBox.about(None, "ATENÇÃO", "Edição Efetuada.") 
         else:

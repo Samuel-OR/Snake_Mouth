@@ -20,6 +20,7 @@ class TimeBuscado():
 
 class Exercicio():
     def __init__(self):
+        self.Name_id = {}
         self.idQuestion = {}
         self.nome = {}
         self.entrada = {}
