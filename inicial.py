@@ -300,6 +300,7 @@ class Main(QMainWindow, Ui_Main):
         self.tela_Professor.lineEdit.setText("")
         self.tela_Professor.lineEdit_10.setText("")
         self.tela_Professor.lineEdit_8.setText("")
+        self.tela_Professor.lineEdit_200.setText()
         
     def cadastrarExer(self):
         string_cadastro_exer = "cadastrarExer,"
@@ -353,7 +354,7 @@ class Main(QMainWindow, Ui_Main):
                 rowPosition = self.tela_Professor.tableWidget.rowCount()
                 self.tela_Professor.tableWidget.insertRow(rowPosition)
                 self.tela_Professor.tableWidget.setItem(rowPosition , 0, QTableWidgetItem(x[3]))
-                self.tela_Professor.tableWidget.setItem(rowPosition , 1, QTableWidgetItem("Falta fazer"))
+                self.tela_Professor.tableWidget.setItem(rowPosition , 1, QTableWidgetItem("250"))
                 self.tela_Professor.tableWidget.setItem(rowPosition , 2, QTableWidgetItem(str(x[4])))    
             
             #QMessageBox.about(None, "ATENÇÃO", "Edição Efetuada.") 
@@ -396,7 +397,7 @@ class Main(QMainWindow, Ui_Main):
             tempoLimite = 1000
             
             timeINI = time.clock()
-            os.system("nohup python3 {} < {} > saidaAPRES.txt".format(codigo, entrada))
+            os.system("nohuppython3 {} < {} > saidaAPRES.txt".format(codigo, entrada))
             timeFIM = time.clock()
 
             print("TEMPO mili: ", (timeFIM- timeINI)*100000)
@@ -492,7 +493,7 @@ class Main(QMainWindow, Ui_Main):
                 rowPosition = self.tela_team.tableWidget_2.rowCount()
                 self.tela_team.tableWidget_2.insertRow(rowPosition)
                 self.tela_team.tableWidget_2.setItem(rowPosition , 0, QTableWidgetItem(x[3]))
-                self.tela_team.tableWidget_2.setItem(rowPosition , 1, QTableWidgetItem("Falta fazer"))
+                self.tela_team.tableWidget_2.setItem(rowPosition , 1, QTableWidgetItem("10"))
                 self.tela_team.tableWidget_2.setItem(rowPosition , 2, QTableWidgetItem(str(x[4])))    
             
             #QMessageBox.about(None, "ATENÇÃO", "Edição Efetuada.") 
