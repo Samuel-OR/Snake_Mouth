@@ -16,3 +16,15 @@ class TimeBuscado():
         self.c2 = str()
         self.c3 = str()
         self.c4 = str()
+
+class Exercicio():
+    def __init__(self):
+        self.idQuestion = {}
+        self.nome = {}
+        self.entrada = {}
+        self.saida = {}
+        self.tempo = {}
+
+
+        
+        

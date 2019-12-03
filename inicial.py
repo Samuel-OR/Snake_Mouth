@@ -23,7 +23,9 @@ class Ui_Main(QtWidgets.QWidget):
         Main.resize(640, 480)
         self.client_socket = ClientSocket()
         self.user_logado = UserLogado()
-        self.time_buscado = TimeBuscado
+        self.time_buscado = TimeBuscado()
+        self.exerciciosAtivos = Exercicio()
+
         self.QtStack = QtWidgets.QStackedLayout()
 
         self.stack0 = QtWidgets.QMainWindow()
@@ -94,41 +96,74 @@ class Main(QMainWindow, Ui_Main):
         self.QtStack.setCurrentIndex(1)
 
     def entrar(self):
-        string_login = "login,"
 
         user = self.tela_login.lineEdit.text()
         password = self.tela_login.lineEdit_2.text()
         
-        string_login+=user+","+password
-        user_logado = self.client_socket.enviar_dados(string_login)
+        if( not self.tela_login.radioButton.isChecked() and not self.tela_login.radioButton_2.isChecked()):
+        
+            QMessageBox.about(None, "LOGIN", "Selecione a opção de login (Time ou professor).   ")  
 
-        if user_logado:
-            
-            print(user_logado)
-            QMessageBox.about(None, "LOGIN", "Login efetuado com sucesso.")  
-            
+        elif( self.tela_login.radioButton_2.isChecked() ):
 
-            self.user_logado.id = user_logado[1]
-            self.user_logado.siape = user_logado[2]
-            self.user_logado.nome = user_logado[3]
-            self.user_logado.email = user_logado[4]
-            self.user_logado.senha = user_logado[5]
-            self.user_logado.times = int(user_logado[6])
-            self.user_logado.exercicios = int(user_logado[7])
+            print("PROFESSOR")
+            string_login = "login,"
+            string_login+=user+","+password
+            user_logado = self.client_socket.enviar_dados(string_login)
+            if user_logado:
+                
+                print("User Logado:",user_logado)
+                QMessageBox.about(None, "LOGIN PROFESSOR", "Login efetuado com sucesso.")  
 
-            self.tela_Professor.lineEdit_1.setText(user_logado[2])
-            self.tela_Professor.lineEdit_3.setText(user_logado[3])
-            self.tela_Professor.lineEdit_4.setText(user_logado[4])
-            self.tela_Professor.lineEdit_5.setText(user_logado[5])
-            self.tela_Professor.textBrowser.setText(user_logado[6])
-            self.tela_Professor.textBrowser_2.setText(user_logado[7])
+                self.user_logado.id = user_logado[1]
+                self.user_logado.siape = user_logado[2]
+                self.user_logado.nome = user_logado[3]
+                self.user_logado.email = user_logado[4]
+                self.user_logado.senha = user_logado[5]
+                self.user_logado.times = int(user_logado[6])
+                self.user_logado.exercicios = int(user_logado[7])
 
-            self.QtStack.setCurrentIndex(2)
+                self.tela_Professor.lineEdit_1.setText(user_logado[2])
+                self.tela_Professor.lineEdit_3.setText(user_logado[3])
+                self.tela_Professor.lineEdit_4.setText(user_logado[4])
+                self.tela_Professor.lineEdit_5.setText(user_logado[5])
+                self.tela_Professor.textBrowser.setText(user_logado[6])
+                self.tela_Professor.textBrowser_2.setText(user_logado[7])
 
+                self.QtStack.setCurrentIndex(2)
 
+            else:
+                QMessageBox.about(None, "LOGIN PROFESSOR", "Login professor invalido.")  
 
         else:
-            QMessageBox.about(None, "LOGIN", "Login invalido.")  
+            print("TIME")
+            string_login = "loginTime,"
+            string_login+=user+","+password
+            user_logado = self.client_socket.enviar_dados(string_login)
+            
+            if user_logado:   
+                QMessageBox.about(None, "LOGIN PROFESSOR", "Login efetuado com sucesso.")  
+
+                self.time_buscado.id = user_logado[1]
+                self.time_buscado.nome = user_logado[4]
+                self.time_buscado.c1 = user_logado[6]
+                self.time_buscado.c2 = user_logado[7]
+                self.time_buscado.c3 = user_logado[8]
+                self.time_buscado.c4 = user_logado[9]
+
+                self.tela_team.lineEdit_1.setText(user_logado[6])
+                self.tela_team.lineEdit_1.setDisabled(True)
+                self.tela_team.lineEdit_3.setText(user_logado[7])
+                self.tela_team.lineEdit_3.setDisabled(True)
+                self.tela_team.lineEdit_4.setText(user_logado[8])
+                self.tela_team.lineEdit_4.setDisabled(True)
+                self.tela_team.lineEdit_5.setText(user_logado[9])
+                self.tela_team.lineEdit_5.setDisabled(True)
+                
+                self.QtStack.setCurrentIndex(3)
+            else:
+                QMessageBox.about(None, "LOGIN PROFESSOR", "Login professor invalido.")  
+
 
         self.tela_login.lineEdit.setText("")
         self.tela_login.lineEdit_2.setText("")
@@ -145,7 +180,6 @@ class Main(QMainWindow, Ui_Main):
             self.tela_Professor.lineEdit_15.setText(achado[9])
 
             self.time_buscado.id = achado[1]
-            print(self.time_buscado.id)
             self.time_buscado.nome = achado[5]
             self.time_buscado.c1 = achado[6]
             self.time_buscado.c2 = achado[7]
@@ -162,9 +196,7 @@ class Main(QMainWindow, Ui_Main):
         C4 = self.tela_Professor.lineEdit_15.text()
 
         string_editar_time+=nameTeam+","+C1+","+C2+","+C3+","+C4+","+self.time_buscado.id
-        print(string_editar_time)
         
-
         if self.client_socket.enviar_dados(string_editar_time):
             QMessageBox.about(None, "User Professor", "Edição do time efetuada com sucesso.") 
         else:
@@ -187,7 +219,6 @@ class Main(QMainWindow, Ui_Main):
 
         string_cadastro+=name+","+email+","+password+","+siape
 
-        print(string_cadastro)
         if self.client_socket.enviar_dados(string_cadastro):
             QMessageBox.about(None, "User Professor", "Professor cadastrado com sucesso.") 
             self.voltarLogin()
@@ -210,8 +241,6 @@ class Main(QMainWindow, Ui_Main):
         senha = self.tela_Professor.lineEdit_200.text()
 
         string_cadastro_time+=nameTeam+","+C1+","+C2+","+C3+","+C4+","+self.user_logado.id+","+senha
-        print(string_cadastro_time)
-        
 
         if self.client_socket.enviar_dados(string_cadastro_time):
             QMessageBox.about(None, "User Professor", "Time cadastro com sucesso.") 
@@ -237,7 +266,6 @@ class Main(QMainWindow, Ui_Main):
         time = self.tela_Professor.spinBox.text()
 
         string_cadastro_exer+= nameExer+","+entrada+","+saida+","+describe+","+time+","+str(self.user_logado.id)
-        print("String:",string_cadastro_exer)
         
         if self.client_socket.enviar_dados(string_cadastro_exer):
             QMessageBox.about(None, "User Professor", "Exercício cadastrado com sucesso.") 
@@ -261,7 +289,6 @@ class Main(QMainWindow, Ui_Main):
         senha = self.tela_Professor.lineEdit_5.text()
 
         string_editar_prof+=siape+","+nome+","+email+","+senha+","+str(self.user_logado.id)
-        print(string_editar_prof)
         
         if self.client_socket.enviar_dados(string_editar_prof):
             QMessageBox.about(None, "User Professor", "Atualização de dados efetuada.") 
@@ -273,7 +300,6 @@ class Main(QMainWindow, Ui_Main):
         string_listar_time += self.user_logado.id
         
         achado = self.client_socket.enviar_dados(string_listar_time)
-        print("Achado:", achado)
         if achado:
             res = achado[1:]
             self.tela_Professor.tableWidget.setRowCount(0)

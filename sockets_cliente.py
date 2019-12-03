@@ -19,14 +19,10 @@ class ClientSocket():
 		resposta = self.client_socket.recv(1024).decode()
 		ponto = resposta.split(';')
 		
-		print("Resposta:", resposta)
-
 		if resposta== "ok":
 			return True
-		
 		resposta = resposta.split(',')
-		print("Respostasplit:", resposta)
-
+		
 		if resposta[0]== "okLogin" or resposta[0]== "okBuscaTime":
 			return resposta
 
