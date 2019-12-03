@@ -345,14 +345,6 @@ class Ui_Tela_Professor(object):
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         
-    def progresso(self):
-        self.tableWidget.clearContents()
-        rowPosition = self.tableWidget.rowCount()
-        for x in range(0,10):
-            self.tableWidget.insertRow(rowPosition)
-            self.tableWidget.setItem(rowPosition , 0, QTableWidgetItem("Samuel"))
-            self.tableWidget.setItem(rowPosition , 1, QTableWidgetItem("É"))
-            self.tableWidget.setItem(rowPosition , 2, QTableWidgetItem("Lindo"))
 
 
     def retranslateUi(self, MainWindow):
