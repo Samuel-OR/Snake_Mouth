@@ -169,21 +169,23 @@ class Main(QMainWindow, Ui_Main):
                 self.time_buscado.c3 = user_logado[8]
                 self.time_buscado.c4 = user_logado[9]
 
-                self.pegarExercicios()
+                try:
+                	self.pegarExercicios()
+	                self.tela_team.lineEdit_1.setText(user_logado[6])
+	                self.tela_team.lineEdit_1.setDisabled(True)
+	                self.tela_team.lineEdit_3.setText(user_logado[7])
+	                self.tela_team.lineEdit_3.setDisabled(True)
+	                self.tela_team.lineEdit_4.setText(user_logado[8])
+	                self.tela_team.lineEdit_4.setDisabled(True)
+	                self.tela_team.lineEdit_5.setText(user_logado[9])
+	                self.tela_team.lineEdit_5.setDisabled(True)
+	                
+	                for x,y in self.exerciciosAtivos.nome.items():
+	                    self.tela_team.comboBox.addItem(y)
 
-                self.tela_team.lineEdit_1.setText(user_logado[6])
-                self.tela_team.lineEdit_1.setDisabled(True)
-                self.tela_team.lineEdit_3.setText(user_logado[7])
-                self.tela_team.lineEdit_3.setDisabled(True)
-                self.tela_team.lineEdit_4.setText(user_logado[8])
-                self.tela_team.lineEdit_4.setDisabled(True)
-                self.tela_team.lineEdit_5.setText(user_logado[9])
-                self.tela_team.lineEdit_5.setDisabled(True)
-                
-                for x,y in self.exerciciosAtivos.nome.items():
-                    self.tela_team.comboBox.addItem(y)
-
-                self.QtStack.setCurrentIndex(3)
+	                self.QtStack.setCurrentIndex(3)
+                except:
+                	pass
             else:
                 QMessageBox.about(None, "LOGIN TIME", "Login professor invalido.")  
 
@@ -300,7 +302,7 @@ class Main(QMainWindow, Ui_Main):
         self.tela_Professor.lineEdit.setText("")
         self.tela_Professor.lineEdit_10.setText("")
         self.tela_Professor.lineEdit_8.setText("")
-        self.tela_Professor.lineEdit_200.setText()
+        self.tela_Professor.lineEdit_200.setText("")
         
     def cadastrarExer(self):
         string_cadastro_exer = "cadastrarExer,"
@@ -449,6 +451,7 @@ class Main(QMainWindow, Ui_Main):
         except:
             QMessageBox.about(None, "User TIME", "Erro na Submissão.")
         
+        print(solucao)
         string_Historico = "cadastrarHist,"
         string_Historico+= self.exerciciosAtivos.nome[idQuestion]+','
         string_Historico+= '2019/09:30,'
